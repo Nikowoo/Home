@@ -1,3 +1,68 @@
-<p>
-  hi
-</p>
+<head>
+<style>
+
+    .playlist {
+        line-height:24px;
+        font-family: "Verdana";
+        position:relative;
+        padding:3px;
+        width:350px;
+        margin-top:8px;
+        background-color:#232122;
+        border: 3px solid #eee;
+    }
+    
+ .topbar {
+        width: 100%;
+        height: 29px;
+        font-size: 18px;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        text-align: center;
+        z-index: 1000;
+        background-color: #000000dd;
+        text-color: #eeeeee;
+        box-shadow: 0px 2px 10px #000000;
+    }
+       
+#character{
+    background-image: url("https://www.svgrepo.com/show/508699/landscape-placeholder.svg");
+    position:relative;
+    width:708px;
+    height:616px;
+    margin-left:11px;
+    z-index:3;
+    animation: character 5s infinite ease-in-out;
+    }
+
+    @keyframes character{
+    0% {transform: scale(1.00) rotate(2deg);}
+    50% {transform: scale(1.05) rotate(-2deg);}
+    100% {transform: scale(1.0) rotate(2deg);}
+    }
+    
+</style>
+</head>
+<body>
+  <div id="character"></div>
+  <div class="topbar">
+            <a href="https://www.twitch.tv/NikoArtzAgain">TWITCH</a> / 
+            <a href="https://www.twitter.com/NikoArtzx">TWITTER</a> / 
+            <a href="https://www.youtube.com/@Anannii">YOUTUBE</a> / 
+            <a href="https://niko.horse/Loading">REFERENCES</a> / 
+            <a href="https://github.com/Nikowoo">GITHUB</a>
+            </div>
+
+                <div id="musicstuff">
+                    <audio controls="" id="audio" autoplay="false" tabindex="0"></audio>
+                    <div class="playlist">
+                    <button onclick="changeAudio(0)">Phatworld - Big Hoovz</button>
+                    <button onclick="changeAudio(1)">Kobaryo - Tool-Assisted Speedcore</button>
+                    <button onclick="changeAudio(2)">Bape Fiends - Crunchy Ball Of Dubstep Gum</button>
+                    <button onclick="changeAudio(3)">Eliminate - Weeble Wobble</button>
+                    <button onclick="changeAudio(4)">Renard - Happy Rave ^_^</button>
+                    <button onclick="changeAudio(5)">Rotteen – Crane's Rage</button>
+                    </div>
+</body>
+
