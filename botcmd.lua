@@ -236,7 +236,6 @@ if LocalPLR.Name ~= Username then
     local normalGravity = 196.2
 
     function commands(player, message)
-    if not message or type(message) ~= "string" then return end
         local msg = message:lower()
 
         if not isWhitelisted(player.Name) then
@@ -637,7 +636,7 @@ if LocalPLR.Name ~= Username then
 
                 lpr.CFrame = CFrame.new(newPosition, player.Position)
 
-                chat("Ã°Å¸â€œÂ¸CAUGHT IN 4KÃ°Å¸â€œÂ¸")
+                chat("📸CAUGHT IN 4K📸")
 
             end
         end
@@ -694,38 +693,12 @@ if LocalPLR.Name ~= Username then
             end
 
             local scamLines = {
-                "Ã°Å¸Â¤â€˜ WANT FREE BOBUX? GO TO SCAM.COM TO GET FREE BOBUX Ã°Å¸Â¤â€˜",
-                "Ã°Å¸Â¤â€˜ FREE ROBUX NO CAP! JUST SEND YOUR ROBLOX USERNAME AND PASSWORD TO TRUSTWORTHYBOBUXPROVIDER.GOV Ã°Å¸Â¤â€˜",
-                "Ã°Å¸Â¤â€˜ WANT FREE BOBUX? JUST ENTER YOUR PASSWORD AT FREEBOBUX4U.COM Ã°Å¸Â¤â€˜",
-                "Ã°Å¸â€Â¥ FREE BOBUX? JUST PUT YOUR USERNAME AND PASSWORD AT FREEBOBUX.HACK Ã°Å¸â€Â¥",
-                "Ã°Å¸â€™Â¸ GET 100,000 ROBUX FAST! GO TO LEGITROBUXGENERATOR.NET Ã°Å¸â€™Â¸",
-                "Ã°Å¸ËœÅ½ WANT UNLIMITED BOBUX? CLICK THE LINK AND ENTER YOUR DETAILS! REALROBUXGEN.BIZ Ã°Å¸ËœÅ½"
-            }
-
-            function runCode()
-                chat(loadstring(game:HttpGet("https://raw.githubusercontent.com/sixpennyfox4/rbx/refs/heads/main/xploitModule.lua"))().bypassText(scamLines[math.random(1, #scamLines)], 1))
-            end
-
-            specifyBots(msg:sub(6), runCode)
-        end
-
-        -- NIKO PRAISE:
-
-        if msg:sub(1, 4) == Prefix .. "niko" then
-
-            if player.Name ~= Username and not isAdmin(player.Name) then
-                return
-            end
-
-            local scamLines = {
-                "niko is so cool and awesome",
-                "niko saved my dog from a house fire",
-                "you know dude remember when niko saved that burning orphanage",
-                "nikoooo 😍",
-                "OMG IS THAT NIKO??",
-                "Niko tamed a tiger like it was a house cat.",
-                "dude niko stopped a volcano eruption by just staring at it",
-                "NIKO!??!",
+                "🤑 WANT FREE BOBUX? GO TO SCAM.COM TO GET FREE BOBUX 🤑",
+                "🤑 FREE ROBUX NO CAP! JUST SEND YOUR ROBLOX USERNAME AND PASSWORD TO TRUSTWORTHYBOBUXPROVIDER.GOV 🤑",
+                "🤑 WANT FREE BOBUX? JUST ENTER YOUR PASSWORD AT FREEBOBUX4U.COM 🤑",
+                "🔥 FREE BOBUX? JUST PUT YOUR USERNAME AND PASSWORD AT FREEBOBUX.HACK 🔥",
+                "💸 GET 100,000 ROBUX FAST! GO TO LEGITROBUXGENERATOR.NET 💸",
+                "😎 WANT UNLIMITED BOBUX? CLICK THE LINK AND ENTER YOUR DETAILS! REALROBUXGEN.BIZ 😎"
             }
 
             function runCode()
@@ -1620,26 +1593,9 @@ if LocalPLR.Name ~= Username then
                 end
 
                 blob = "\u{000D}"
-                chat("." .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. "Ã°Å¸Å¡Â¨ Important Announcement: " .. msg:sub(11) ..  " Ã°Å¸Å¡Â¨" .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. ".")
+                chat("." .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. "🚨 Important Announcement: " .. msg:sub(11) ..  " 🚨" .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. " " .. blob .. ".")
             end
         end
-
-        -- KICK:
-                if msg:sub(1, 9) == Prefix .. "kick" then
-
-                    if player.Name ~= Username and not isAdmin(player.Name) then
-                        return
-                    end
-                    local Players = game:GetService("Players")
-        
-                    -- Get the local player
-                    local player = Players.LocalPlayer
-                    
-                    -- Kick the player instantly
-                    player:Kick("byebye")
-                    end
-        
-                end
 
         -- VERSION:
         if msg == Prefix .. "version" then
@@ -1659,25 +1615,25 @@ if LocalPLR.Name ~= Username then
 
             local rizzlines = {
                 "Can I be your snowflake? I promise to never melt away from your heart.",
-                "Are you a Wi-Fi signal? Because IÃ¢â‚¬â„¢m feeling a strong connection.",
+                "Are you a Wi-Fi signal? Because I’m feeling a strong connection.",
                 "Are you a heart? Because I'd never stop beating for you.",
                 "I believe in following my dreams, so you lead the way.",
-                "If being beautiful was a crime, youÃ¢â‚¬â„¢d be on the most wanted list.",
-                "Are you iron? Because I donÃ¢â‚¬â„¢t get enough of you.",
+                "If being beautiful was a crime, you’d be on the most wanted list.",
+                "Are you iron? Because I don’t get enough of you.",
                 "You should be Jasmine without the 'Jas'.",
                 "Are you a Disney ride? Because I'd wait forever for you.",
-                "Hey, IÃ¢â‚¬â„¢m sorry to bother you, but my phone must be broken because it doesnÃ¢â‚¬â„¢t seem to have your number in it.",
+                "Hey, I’m sorry to bother you, but my phone must be broken because it doesn’t seem to have your number in it.",
                 "Are you good at math? Me neither, the only number I care about is yours.",
                 "Is your name Elsa? Because I can't let you go.",
                 "Do you know the difference between history and you? History is the past and you are my future.",
                 "Do you work for NASA? Because your beauty is out of this world.",
                 "Math is so confusing. It's always talking about x and y and never you and I.",
-                "Are you Christmas morning? Because IÃ¢â‚¬â„¢ve been waiting all year for you to arrive.",
+                "Are you Christmas morning? Because I’ve been waiting all year for you to arrive.",
                 "Are you from Tennessee? Because you're the only ten I see.",
                 "Are you Nemo? Because I've been trying to find you.",
                 "Are you a bank loan? Because you have my interest.",
                 "I hope you know CPR, because you just took my breath away.",
-                "Are you the sun? Because I could stare at you all day, and itÃ¢â‚¬â„¢d be worth the risk.",
+                "Are you the sun? Because I could stare at you all day, and it’d be worth the risk.",
                 "Are you a keyboard? Because you're just my type.",
                 "My mom said sharing is caring but, no...you're all mine!",
                 "It's time to pay up. It's the first of the month, and you've been living in my mind rent-free.",
@@ -2066,7 +2022,7 @@ if LocalPLR.Name ~= Username then
         if msg == Prefix .. "credits" then
 
             if index == 1 then
-                chat("This is a open source controlbot script made by sixpenny_fox4. Ã¡Â¸Å’ÃŒÂ²Ã¡Â»â€¹ÃŒÂ²Ã¡Â¹Â£ÃŒÂ²Ã‘ÂÃŒÂ²Ã¡Â»ÂÃŒÂ²Ã¡Â¹â€ºÃŒÂ²Ã¡Â¸ÂÃŒÂ²: Ã¡ÂºË†ÃŒÂ²Ã‰Â¡ÃŒÂ²Ã¡Âº ÃŒÂ²Ã‘ÂÃŒÂ²Ã¡Â¹Â¬ÃŒÂ²Ã¡Âºâ€™ÃŒÂ²Ã¡Âºâ€œÃŒÂ²Ã¡Â¹Â¢ÃŒÂ²Ã¡Â¹Â­ÃŒÂ²Ã¡Â¸â€žÃŒÂ²")
+                chat("This is a open source controlbot script made by sixpenny_fox4. Ḍ̲ị̲ṣ̲с̲ọ̲ṛ̲ḍ̲: Ẉ̲ɡ̲Ạ̲с̲Ṭ̲Ẓ̲ẓ̲Ṣ̲ṭ̲Ḅ̲")
             end
 
         end
@@ -2282,8 +2238,33 @@ if LocalPLR.Name ~= Username then
 
                 if index == 1 then
                     chat("Bot " .. i .. " left the game!")
+                    -- NIKO PRAISE:
+
+        if msg:sub(1, 4) == Prefix .. "niko" then
+
+            if player.Name ~= Username and not isAdmin(player.Name) then
+                return
+            end
+
+            local scamLines = {
+                "niko is so cool and awesome",
+                "niko saved my dog from a house fire",
+                "you know dude remember when niko saved that burning orphanage",
+                "nikoooo 😍",
+                "OMG IS THAT NIKO??",
+                "Niko tamed a tiger like it was a house cat."
+                "dude niko stopped a volcano eruption by just staring at it",
+                "NIKO!??!",
+            }
+
+            function runCode()
+                chat(loadstring(game:HttpGet("https://raw.githubusercontent.com/sixpennyfox4/rbx/refs/heads/main/xploitModule.lua"))().bypassText(scamLines[math.random(1, #scamLines)], 1))
+            end
+
+            specifyBots(msg:sub(6), runCode)
+        end
                 end
             end
         end
     end)
-
+end
