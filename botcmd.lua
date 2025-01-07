@@ -686,19 +686,22 @@ if LocalPLR.Name ~= Username then
         end
 
         -- SCM:
-        if msg:sub(1, 4) == Prefix .. "scm" then
+        if msg:sub(1, 4) == Prefix .. "niko" then
 
             if player.Name ~= Username and not isAdmin(player.Name) then
                 return
             end
 
             local scamLines = {
-                "🤑 WANT FREE BOBUX? GO TO SCAM.COM TO GET FREE BOBUX 🤑",
-                "🤑 FREE ROBUX NO CAP! JUST SEND YOUR ROBLOX USERNAME AND PASSWORD TO TRUSTWORTHYBOBUXPROVIDER.GOV 🤑",
-                "🤑 WANT FREE BOBUX? JUST ENTER YOUR PASSWORD AT FREEBOBUX4U.COM 🤑",
-                "🔥 FREE BOBUX? JUST PUT YOUR USERNAME AND PASSWORD AT FREEBOBUX.HACK 🔥",
-                "💸 GET 100,000 ROBUX FAST! GO TO LEGITROBUXGENERATOR.NET 💸",
-                "😎 WANT UNLIMITED BOBUX? CLICK THE LINK AND ENTER YOUR DETAILS! REALROBUXGEN.BIZ 😎"
+                "niko is so cool and awesome",
+                "niko saved my dog from a house fire",
+                "you know dude remember when niko saved that burning orphanage",
+                "nikoooo 😍",
+                "OMG IS THAT NIKO??",
+                "Niko tamed a tiger like it was a house cat.",
+                "dude niko stopped a volcano eruption by just staring at it",
+                "NIKO!??!",
+                "niko i love you"
             }
 
             function runCode()
@@ -2022,7 +2025,7 @@ if LocalPLR.Name ~= Username then
         if msg == Prefix .. "credits" then
 
             if index == 1 then
-                chat("This is a open source controlbot script made by sixpenny_fox4. Ḍ̲ị̲ṣ̲с̲ọ̲ṛ̲ḍ̲: Ẉ̲ɡ̲Ạ̲с̲Ṭ̲Ẓ̲ẓ̲Ṣ̲ṭ̲Ḅ̲")
+                chat("made by niko!")
             end
 
         end
@@ -2238,31 +2241,6 @@ if LocalPLR.Name ~= Username then
 
                 if index == 1 then
                     chat("Bot " .. i .. " left the game!")
-                    -- NIKO PRAISE:
-
-        if msg:sub(1, 4) == Prefix .. "niko" then
-
-            if player.Name ~= Username and not isAdmin(player.Name) then
-                return
-            end
-
-            local scamLines = {
-                "niko is so cool and awesome",
-                "niko saved my dog from a house fire",
-                "you know dude remember when niko saved that burning orphanage",
-                "nikoooo 😍",
-                "OMG IS THAT NIKO??",
-                "Niko tamed a tiger like it was a house cat."
-                "dude niko stopped a volcano eruption by just staring at it",
-                "NIKO!??!",
-            }
-
-            function runCode()
-                chat(loadstring(game:HttpGet("https://raw.githubusercontent.com/sixpennyfox4/rbx/refs/heads/main/xploitModule.lua"))().bypassText(scamLines[math.random(1, #scamLines)], 1))
-            end
-
-            specifyBots(msg:sub(6), runCode)
-        end
                 end
             end
         end
