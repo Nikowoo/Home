@@ -686,7 +686,7 @@ if LocalPLR.Name ~= Username then
         end
 
         -- SCM:
-        if msg:sub(1, 4) == Prefix .. "niko" then
+        if msg:sub(1, 4) == Prefix .. "scm" then
 
             if player.Name ~= Username and not isAdmin(player.Name) then
                 return
