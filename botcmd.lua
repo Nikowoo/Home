@@ -411,7 +411,7 @@ if msg:sub(1, 5) == Prefix .. "jump" then
     function runCode()
         for i = 1, jumpCount do
             LocalPLR.Character.Humanoid.Jump = true
-            wait(0) 
+            wait(0.3) 
         end
     end
 
