@@ -2169,11 +2169,8 @@ if msg:sub(1, 7) == Prefix .. "wander" then
         if wanderF then
             wanderF:Disconnect() -- Ensure no existing wander is running
         end
-
-        -- Start the wandering process
         wanderF = coroutine.create(function()
             while true do
-                -- Generate a random target position relative to the current position
                 local target = Vector3.new(math.random(-50, 50), 0, math.random(-50, 50))
                 LocalPLR.Character.Humanoid:MoveTo(LocalPLR.Character.HumanoidRootPart.Position + target)
 
@@ -2183,14 +2180,14 @@ if msg:sub(1, 7) == Prefix .. "wander" then
                 end
 
                 -- Wait a random time between 5 to 10 seconds before the next move
-                wait(math.random(5, 10))
+                wait(math.random(0.3, 5))
             end
         end)
 
         coroutine.resume(wanderF)
 
         if index == 1 then
-            chat("Wandering started!")
+            print("Wandering started!")
         end
     end
 
@@ -2212,7 +2209,7 @@ if msg:sub(1, 9) == Prefix .. "unwander" then
         end
 
         if index == 1 then
-            chat("Wandering stopped instantly!")
+            chat("Wandering stopped!")
         end
     end
 
