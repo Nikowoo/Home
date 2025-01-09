@@ -2170,19 +2170,24 @@ if msg:sub(1, 7) == Prefix .. "wander" then
             wanderF:Disconnect() -- Ensure no existing wander is running
         end
 
-        wanderF = RunService.Heartbeat:Connect(function()
-            -- Generate a random target position relative to the current position
-            local target = Vector3.new(math.random(-50, 50), 0, math.random(-50, 50))
-            LocalPLR.Character.Humanoid:MoveTo(LocalPLR.Character.HumanoidRootPart.Position + target)
+        -- Start the wandering process
+        wanderF = coroutine.create(function()
+            while true do
+                -- Generate a random target position relative to the current position
+                local target = Vector3.new(math.random(-50, 50), 0, math.random(-50, 50))
+                LocalPLR.Character.Humanoid:MoveTo(LocalPLR.Character.HumanoidRootPart.Position + target)
 
-            -- Add a 30% chance to jump
-            if math.random() < 0.3 then
-                LocalPLR.Character.Humanoid.Jump = true
+                -- Add a 30% chance to jump
+                if math.random() < 0.3 then
+                    LocalPLR.Character.Humanoid.Jump = true
+                end
+
+                -- Wait a random time between 5 to 10 seconds before the next move
+                wait(math.random(5, 10))
             end
-
-            -- Wait a random time between 3 to 7 seconds before the next move
-            wait(math.random(3, 7))
         end)
+
+        coroutine.resume(wanderF)
 
         if index == 1 then
             chat("Wandering started!")
@@ -2196,7 +2201,7 @@ end
 if msg:sub(1, 9) == Prefix .. "unwander" then
     function runCode()
         if wanderF then
-            wanderF:Disconnect()
+            coroutine.close(wanderF) -- Stop the wandering coroutine
             wanderF = nil
         end
 
@@ -2207,12 +2212,13 @@ if msg:sub(1, 9) == Prefix .. "unwander" then
         end
 
         if index == 1 then
-            chat("Wandering stopped!")
+            chat("Wandering stopped instantly!")
         end
     end
 
     specifyBots(msg:sub(10), runCode)
 end
+
 
 
 
