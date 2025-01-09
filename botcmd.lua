@@ -921,7 +921,7 @@ end
 
         end
 
--- FOLLOW:
+-- :
 if msg:sub(1, 7) == Prefix .. "follow" then
     local args = getArgs(message:sub(9))
     local targetPLR = getFullPlayerName(args[1])
@@ -951,6 +951,38 @@ end
 
         end
 
+        -- MIRROR:
+if msg:sub(1, 6) == Prefix .. "mirror" then
+    local args = getArgs(message:sub(8))
+    local targetPLR = getFullPlayerName(args[1])
+
+    function runCode()
+        mirrorF = RunService.Heartbeat:Connect(function()
+            if game.Players[targetPLR] and LocalPLR.Character and game.Players[targetPLR].Character then
+                local targetRoot = game.Players[targetPLR].Character:FindFirstChild("HumanoidRootPart")
+                local localRoot = LocalPLR.Character:FindFirstChild("HumanoidRootPart")
+                if targetRoot and localRoot then
+                    localRoot.CFrame = targetRoot.CFrame * CFrame.new(0, 0, 0)
+                end
+            end
+        end)
+    end
+
+    specifyBots2(args, 2, runCode)
+end
+
+if msg:sub(1, 8) == Prefix .. "unmirror" then
+    function runCode()
+        if mirrorF then
+            mirrorF:Disconnect()
+        end
+    end
+
+    specifyBots(msg:sub(10), runCode)
+end
+
+
+    
         -- LINEFOLLOW:
         if msg:sub(1, 11) == Prefix .. "linefollow" then
             local args = getArgs(message:sub(13))
