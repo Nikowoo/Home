@@ -2203,30 +2203,6 @@ if LocalPLR.Name ~= Username then
 
         end
 
-        --WONDER:
-        if msg == Prefix .. "wander" then
-    function runCode()
-        while true do
-            local target = Vector3.new(math.random(-50, 50), 0, math.random(-50, 50))
-            LocalPLR.Character.Humanoid:MoveTo(LocalPLR.Character.HumanoidRootPart.Position + target)
-            wait(math.random(3, 7))
-        end
-    end
-    specifyBots(msg:sub(7), runCode)
-end
-
-        --UNWONDER:
-        if msg == Prefix .. "unwander" then
-    function runCode()
-        if wanderF then
-            wanderF:Disconnect()
-            wanderF = nil
-        end
-    end
-    specifyBots(msg:sub(9), runCode)
-end
-
-
         -- CMDS:
         if msg:sub(1, 5) == Prefix .. "cmds" then
             local page = msg:sub(7)
@@ -2311,3 +2287,27 @@ end
     end)
 end
 
+
+
+
+-- Wander and Unwander Commands
+if msg == Prefix .. "unwander" then
+    function runCode()
+        if wanderF then
+            wanderF:Disconnect()
+            wanderF = nil
+        end
+    end
+    specifyBots(msg:sub(9), runCode)
+end
+
+if msg == Prefix .. "wander" then
+    function runCode()
+        while true do
+            local target = Vector3.new(math.random(-50, 50), 0, math.random(-50, 50))
+            LocalPLR.Character.Humanoid:MoveTo(LocalPLR.Character.HumanoidRootPart.Position + target)
+            wait(math.random(3, 7))
+        end
+    end
+    specifyBots(msg:sub(7), runCode)
+end
