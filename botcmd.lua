@@ -2180,7 +2180,7 @@ if msg:sub(1, 7) == Prefix .. "wander" then
                 end
 
                 -- Wait a random time between 5 to 10 seconds before the next move
-                wait(math.random(0.3, 5))
+                wait(math.random(0.3, 2))
             end
         end)
 
