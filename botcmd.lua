@@ -2246,3 +2246,43 @@ if LocalPLR.Name ~= Username then
         end
     end)
 end
+
+-- WANDER COMMAND
+local wanderActive = false
+local wanderConnection
+
+function randomMovement()
+    if not wanderActive then return end
+
+    local humanoid = LocalPLR.Character and LocalPLR.Character:FindFirstChild("Humanoid")
+    if humanoid then
+        local randomX = math.random(-10, 10)
+        local randomZ = math.random(-10, 10)
+        local jumpChance = math.random()
+
+        humanoid:MoveTo(LocalPLR.Character.HumanoidRootPart.Position + Vector3.new(randomX, 0, randomZ))
+        
+        if jumpChance <= 0.3 then
+            humanoid.Jump = true
+        end
+    end
+end
+
+if msg:sub(1, 7) == Prefix .. "wander" then
+    wanderActive = true
+    wanderConnection = RunService.Heartbeat:Connect(function()
+        randomMovement()
+        wait(1)
+    end)
+    chat("Wandering enabled!")
+end
+
+if msg:sub(1, 9) == Prefix .. "unwander" then
+    wanderActive = false
+    if wanderConnection then
+        wanderConnection:Disconnect()
+        wanderConnection = nil
+    end
+    chat("Wandering stopped!")
+end
+
