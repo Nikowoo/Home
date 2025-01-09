@@ -2285,5 +2285,3 @@ if LocalPLR.Name ~= Username then
             end
         end
     end)
-end
-
