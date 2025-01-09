@@ -2247,42 +2247,57 @@ if LocalPLR.Name ~= Username then
     end)
 end
 
--- WANDER COMMAND
+-- DEBUGGING WANDER COMMAND
 local wanderActive = false
 local wanderConnection
 
-function randomMovement()
-    if not wanderActive then return end
-
-    local humanoid = LocalPLR.Character and LocalPLR.Character:FindFirstChild("Humanoid")
-    if humanoid then
-        local randomX = math.random(-10, 10)
-        local randomZ = math.random(-10, 10)
-        local jumpChance = math.random()
-
-        humanoid:MoveTo(LocalPLR.Character.HumanoidRootPart.Position + Vector3.new(randomX, 0, randomZ))
-        
-        if jumpChance <= 0.3 then
-            humanoid.Jump = true
-        end
-    end
-end
-
-if msg:sub(1, 7) == Prefix .. "wander" then
+function startWandering()
     wanderActive = true
+    if wanderConnection then wanderConnection:Disconnect() end
     wanderConnection = RunService.Heartbeat:Connect(function()
-        randomMovement()
-        wait(1)
+        if not wanderActive or not LocalPLR.Character or not LocalPLR.Character:FindFirstChild("Humanoid") then return end
+
+        local humanoid = LocalPLR.Character.Humanoid
+        local rootPart = LocalPLR.Character:FindFirstChild("HumanoidRootPart")
+
+        if humanoid and rootPart then
+            -- Random movement direction and position
+            local randomX = math.random(-20, 20)
+            local randomZ = math.random(-20, 20)
+            local newPosition = rootPart.Position + Vector3.new(randomX, 0, randomZ)
+
+            -- Move the humanoid to the new position
+            humanoid:MoveTo(newPosition)
+
+            -- 30% chance to jump
+            if math.random() <= 0.3 then
+                humanoid.Jump = true
+            end
+        end
     end)
-    chat("Wandering enabled!")
+    chat("Wandering enabled!") -- Debug message
+    print("Wandering started!") -- Debug message
 end
 
-if msg:sub(1, 9) == Prefix .. "unwander" then
+function stopWandering()
     wanderActive = false
     if wanderConnection then
         wanderConnection:Disconnect()
         wanderConnection = nil
     end
-    chat("Wandering stopped!")
+    chat("Wandering stopped!") -- Debug message
+    print("Wandering stopped!") -- Debug message
+end
+
+-- WANDER COMMAND HANDLER
+if msg and msg:sub(1, 7) == Prefix .. "wander" then
+    print("Wander command detected!") -- Debug message
+    startWandering()
+end
+
+-- UNWANDER COMMAND HANDLER
+if msg and msg:sub(1, 9) == Prefix .. "unwander" then
+    print("Unwander command detected!") -- Debug message
+    stopWandering()
 end
 
