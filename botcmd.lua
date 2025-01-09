@@ -404,15 +404,19 @@ if LocalPLR.Name ~= Username then
         end
 
         -- JUMP:
-        if msg:sub(1, 5) == Prefix .. "jump" then
+if msg:sub(1, 5) == Prefix .. "jump" then
+    local args = getArgs(msg:sub(7))
+    local jumpCount = tonumber(args[1]) or 1
 
-            function runCode()
-                LocalPLR.Character.Humanoid.Jump = true
-            end
-
-            specifyBots(msg:sub(7), runCode)
-
+    function runCode()
+        for i = 1, jumpCount do
+            LocalPLR.Character.Humanoid.Jump = true
+            wait(0) 
         end
+    end
+
+    specifyBots2(args, 2, runCode)
+end
 
         -- BRING:
         if msg:sub(1, 6) == Prefix .. "bring" then
