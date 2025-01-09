@@ -1002,7 +1002,7 @@ if LocalPLR.Name ~= Username then
         end
 
         -- ANTI-BANG:
-        if msg:sub(1, 9) == Prefix .. "antibang" then
+        if msg:sub(1, 9) == Prefix .. "antib" then
 
                 function runCode()
 
