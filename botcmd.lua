@@ -2285,13 +2285,12 @@ if LocalPLR.Name ~= Username then
             end
         end
     end)
-end
 
 
 
 
 -- Wander and Unwander Commands
-if msg == Prefix .. "unwander" then
+if msg:sub(1, 9) == Prefix .. "unwander" then
     function runCode()
         if wanderF then
             wanderF:Disconnect()
@@ -2301,7 +2300,8 @@ if msg == Prefix .. "unwander" then
     specifyBots(msg:sub(9), runCode)
 end
 
-if msg == Prefix .. "wander" then
+if msg:sub(1, 9) == Prefix .. "wander" then
+chat("Wandering!")
     function runCode()
         while true do
             local target = Vector3.new(math.random(-50, 50), 0, math.random(-50, 50))
