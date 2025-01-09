@@ -2163,6 +2163,61 @@ if LocalPLR.Name ~= Username then
 
         end
 
+-- WANDER COMMAND
+if msg:sub(1, 7) == Prefix .. "wander" then
+    function runCode()
+        if wanderF then
+            wanderF:Disconnect() -- Ensure no existing wander is running
+        end
+
+        wanderF = RunService.Heartbeat:Connect(function()
+            -- Generate a random target position relative to the current position
+            local target = Vector3.new(math.random(-50, 50), 0, math.random(-50, 50))
+            LocalPLR.Character.Humanoid:MoveTo(LocalPLR.Character.HumanoidRootPart.Position + target)
+
+            -- Add a 30% chance to jump
+            if math.random() < 0.3 then
+                LocalPLR.Character.Humanoid.Jump = true
+            end
+
+            -- Wait a random time between 3 to 7 seconds before the next move
+            wait(math.random(3, 7))
+        end)
+
+        if index == 1 then
+            chat("Wandering started!")
+        end
+    end
+
+    specifyBots(msg:sub(8), runCode)
+end
+
+-- UNWANDER COMMAND
+if msg:sub(1, 9) == Prefix .. "unwander" then
+    function runCode()
+        if wanderF then
+            wanderF:Disconnect()
+            wanderF = nil
+        end
+
+        -- Stop motion immediately
+        if LocalPLR.Character:FindFirstChild("Humanoid") then
+            LocalPLR.Character.Humanoid:MoveTo(LocalPLR.Character.HumanoidRootPart.Position) -- Halt movement
+            LocalPLR.Character.Humanoid.Jump = false -- Ensure no jumping occurs
+        end
+
+        if index == 1 then
+            chat("Wandering stopped!")
+        end
+    end
+
+    specifyBots(msg:sub(10), runCode)
+end
+
+
+
+
+
         -- CMDS:
         if msg:sub(1, 5) == Prefix .. "cmds" then
             local page = msg:sub(7)
@@ -2246,58 +2301,3 @@ if LocalPLR.Name ~= Username then
         end
     end)
 end
-
--- DEBUGGING WANDER COMMAND
-local wanderActive = false
-local wanderConnection
-
-function startWandering()
-    wanderActive = true
-    if wanderConnection then wanderConnection:Disconnect() end
-    wanderConnection = RunService.Heartbeat:Connect(function()
-        if not wanderActive or not LocalPLR.Character or not LocalPLR.Character:FindFirstChild("Humanoid") then return end
-
-        local humanoid = LocalPLR.Character.Humanoid
-        local rootPart = LocalPLR.Character:FindFirstChild("HumanoidRootPart")
-
-        if humanoid and rootPart then
-            -- Random movement direction and position
-            local randomX = math.random(-20, 20)
-            local randomZ = math.random(-20, 20)
-            local newPosition = rootPart.Position + Vector3.new(randomX, 0, randomZ)
-
-            -- Move the humanoid to the new position
-            humanoid:MoveTo(newPosition)
-
-            -- 30% chance to jump
-            if math.random() <= 0.3 then
-                humanoid.Jump = true
-            end
-        end
-    end)
-    chat("Wandering enabled!") -- Debug message
-    print("Wandering started!") -- Debug message
-end
-
-function stopWandering()
-    wanderActive = false
-    if wanderConnection then
-        wanderConnection:Disconnect()
-        wanderConnection = nil
-    end
-    chat("Wandering stopped!") -- Debug message
-    print("Wandering stopped!") -- Debug message
-end
-
--- WANDER COMMAND HANDLER
-if msg and msg:sub(1, 7) == Prefix .. "wander" then
-    print("Wander command detected!") -- Debug message
-    startWandering()
-end
-
--- UNWANDER COMMAND HANDLER
-if msg and msg:sub(1, 9) == Prefix .. "unwander" then
-    print("Unwander command detected!") -- Debug message
-    stopWandering()
-end
-
