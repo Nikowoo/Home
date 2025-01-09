@@ -921,21 +921,25 @@ end
 
         end
 
-        -- FOLLOW:
-        if msg:sub(1, 7) == Prefix .. "follow" then
-            local args = getArgs(message:sub(9))
+-- FOLLOW:
+if msg:sub(1, 7) == Prefix .. "follow" then
+    local args = getArgs(message:sub(9))
+    local targetPLR = getFullPlayerName(args[1])
+    local zigzag = args[2] == "zigzag" 
+    local zigzagDistance = tonumber(args[3]) or 3 
 
-            local targetPLR = getFullPlayerName(args[1])
+    function runCode()
+        followF = RunService.Heartbeat:Connect(function()
+            local offsetX = zigzag and (math.sin(tick() * 3) * zigzagDistance) or 0
+            LocalPLR.Character:FindFirstChild("Humanoid"):MoveTo(
+                game.Players[targetPLR].Character.HumanoidRootPart.Position + Vector3.new(offsetX, 0, 0)
+            )
+        end)
+    end
 
-            function runCode()
-                followF = RunService.Heartbeat:Connect(function()
-                    LocalPLR.Character:FindFirstChild("Humanoid"):MoveTo(game.Players[targetPLR].Character:FindFirstChild("HumanoidRootPart").Position)
-                end)
-            end
+    specifyBots2(args, 2, runCode)
+end
 
-            specifyBots2(args, 2, runCode)
-
-        end
 
         if msg:sub(1, 9) == Prefix .. "unfollow" then
 
