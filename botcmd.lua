@@ -958,15 +958,30 @@ if msg:sub(1, 7) == Prefix .. "mirror" then
 
     function runCode()
         if game.Players[targetPLR] then
-            mirrorF = RunService.Heartbeat:Connect(function()
-                -- Replicate the target player's HumanoidRootPart position and rotation
-                local targetRoot = game.Players[targetPLR].Character:FindFirstChild("HumanoidRootPart")
-                local botRoot = LocalPLR.Character:FindFirstChild("HumanoidRootPart")
+            local targetCharacter = game.Players[targetPLR].Character
+            local botCharacter = LocalPLR.Character
 
-                if targetRoot and botRoot then
-                    botRoot.CFrame = targetRoot.CFrame
-                end
-            end)
+            -- Ensure both characters exist
+            if targetCharacter and botCharacter then
+                mirrorF = RunService.Heartbeat:Connect(function()
+                    local targetHumanoid = targetCharacter:FindFirstChild("Humanoid")
+                    local botHumanoid = botCharacter:FindFirstChild("Humanoid")
+
+                    local targetRoot = targetCharacter:FindFirstChild("HumanoidRootPart")
+                    local botRoot = botCharacter:FindFirstChild("HumanoidRootPart")
+
+                    if targetHumanoid and botHumanoid and targetRoot and botRoot then
+                        -- Mirror jump
+                        botHumanoid.Jump = targetHumanoid.Jump
+
+                        -- Mirror rotation
+                        botRoot.CFrame = CFrame.new(botRoot.Position) * CFrame.Angles(0, targetRoot.CFrame:ToEulerAnglesYXZ())
+
+                        -- Optional: Mirror sit
+                        botHumanoid.Sit = targetHumanoid.Sit
+                    end
+                end)
+            end
         end
     end
 
