@@ -951,35 +951,39 @@ end
 
         end
 
-        -- MIRROR:
+-- MIRROR MOVEMENT COMMAND
 if msg:sub(1, 6) == Prefix .. "mirror" then
     local args = getArgs(message:sub(8))
     local targetPLR = getFullPlayerName(args[1])
 
     function runCode()
-        mirrorF = RunService.Heartbeat:Connect(function()
-            if game.Players[targetPLR] and LocalPLR.Character and game.Players[targetPLR].Character then
+        if game.Players[targetPLR] then
+            mirrorF = RunService.Heartbeat:Connect(function()
+                -- Replicate the target player's HumanoidRootPart position and rotation
                 local targetRoot = game.Players[targetPLR].Character:FindFirstChild("HumanoidRootPart")
-                local localRoot = LocalPLR.Character:FindFirstChild("HumanoidRootPart")
-                if targetRoot and localRoot then
-                    localRoot.CFrame = targetRoot.CFrame * CFrame.new(0, 0, 0)
+                local botRoot = LocalPLR.Character:FindFirstChild("HumanoidRootPart")
+
+                if targetRoot and botRoot then
+                    botRoot.CFrame = targetRoot.CFrame
                 end
-            end
-        end)
+            end)
+        end
     end
 
     specifyBots2(args, 2, runCode)
 end
 
-if msg:sub(1, 8) == Prefix .. "unmirror" then
+-- STOP MIRRORING COMMAND
+if msg:sub(1, 9) == Prefix .. "unmirror" then
     function runCode()
         if mirrorF then
             mirrorF:Disconnect()
         end
     end
 
-    specifyBots(msg:sub(10), runCode)
+    specifyBots(msg:sub(11), runCode)
 end
+
 
 
     
