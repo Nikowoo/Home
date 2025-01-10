@@ -951,18 +951,15 @@ end
 
         end
 
-if msg:sub(1, 6) == Prefix .. "mirror" then
+-- MIRROR MOVEMENT COMMAND
+if msg:sub(1, 7) == Prefix .. "mirror" then
     local args = getArgs(message:sub(8))
     local targetPLR = getFullPlayerName(args[1])
-
-    print("Mirror command triggered for:", targetPLR)
 
     function runCode()
         if game.Players[targetPLR] then
             local targetCharacter = game.Players[targetPLR].Character
             local botCharacter = LocalPLR.Character
-
-            print("Target Character:", targetCharacter, "Bot Character:", botCharacter)
 
             -- Ensure both characters exist
             if targetCharacter and botCharacter then
@@ -976,31 +973,35 @@ if msg:sub(1, 6) == Prefix .. "mirror" then
                     if targetHumanoid and botHumanoid and targetRoot and botRoot then
                         -- Mirror jumping
                         if targetHumanoid.Jump and botHumanoid.FloorMaterial ~= Enum.Material.Air then
-                            print("Bot Jumping")
                             botHumanoid.Jump = true
                         end
 
                         -- Mirror walking
                         local targetMoveDirection = targetHumanoid.MoveDirection
-                        print("Target Move Direction:", targetMoveDirection)
                         botHumanoid:Move(targetMoveDirection, false)
 
                         -- Mirror rotation
                         botRoot.CFrame = CFrame.new(botRoot.Position) * CFrame.Angles(0, targetRoot.CFrame:ToEulerAnglesYXZ())
-                    else
-                        print("Missing Humanoid or RootPart for Target or Bot")
                     end
                 end)
-            else
-                print("Either targetCharacter or botCharacter is missing!")
             end
-        else
-            print("Target player not found:", targetPLR)
         end
     end
 
     specifyBots2(args, 2, runCode)
 end
+
+-- STOP MIRRORING COMMAND
+if msg:sub(1, 9) == Prefix .. "unmirror" then
+    function runCode()
+        if mirrorF then
+            mirrorF:Disconnect()
+        end
+    end
+
+    specifyBots(msg:sub(11), runCode)
+end
+
 
 
 
