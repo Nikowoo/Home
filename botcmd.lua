@@ -952,7 +952,7 @@ end
         end
 
 -- MIRROR MOVEMENT COMMAND
-if msg:sub(1, 7) == Prefix .. "mirror" then
+if msg:sub(1, 6) == Prefix .. "mirror" then
     local args = getArgs(message:sub(8))
     local targetPLR = getFullPlayerName(args[1])
 
@@ -971,14 +971,17 @@ if msg:sub(1, 7) == Prefix .. "mirror" then
                     local botRoot = botCharacter:FindFirstChild("HumanoidRootPart")
 
                     if targetHumanoid and botHumanoid and targetRoot and botRoot then
-                        -- Mirror jump
-                        botHumanoid.Jump = targetHumanoid.Jump
+                        -- Mirror jumping
+                        if targetHumanoid.Jump and botHumanoid.FloorMaterial ~= Enum.Material.Air then
+                            botHumanoid.Jump = true
+                        end
+
+                        -- Mirror walking
+                        local targetMoveDirection = targetHumanoid.MoveDirection
+                        botHumanoid:Move(targetMoveDirection, false)
 
                         -- Mirror rotation
                         botRoot.CFrame = CFrame.new(botRoot.Position) * CFrame.Angles(0, targetRoot.CFrame:ToEulerAnglesYXZ())
-
-                        -- Optional: Mirror sit
-                        botHumanoid.Sit = targetHumanoid.Sit
                     end
                 end)
             end
@@ -998,6 +1001,7 @@ if msg:sub(1, 9) == Prefix .. "unmirror" then
 
     specifyBots(msg:sub(11), runCode)
 end
+
 
 
 
