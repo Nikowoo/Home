@@ -952,7 +952,7 @@ end
         end
 
 -- MIRROR MOVEMENT COMMAND
-if msg:sub(1, 6) == Prefix .. "mirror" then
+if msg:sub(1, 7) == Prefix .. "mirror" then
     local args = getArgs(message:sub(8))
     local targetPLR = getFullPlayerName(args[1])
 
