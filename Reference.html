@@ -1,0 +1,24 @@
+<head>
+    <style>
+        input[type="image"] {
+            transition: transform 0.2s ease;
+        }
+
+        input[type="image"]:hover {
+            transform: scale(1.1); 
+        }
+    </style>
+</head>
+<body>
+    <input type="image" src="files/images/main/fox.png" />
+
+    <script>
+        addEventListener("click", wii);
+      
+        function wii() {
+            var audio = new Audio('files/audio/click.wav');
+            audio.play();
+        }
+    </script>
+</body>
+

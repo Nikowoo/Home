@@ -1,0 +1,142 @@
+<style>
+.cd-collection {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.cd-item {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 0%;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cd-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.cd-item .img1 {
+    opacity: 1;
+    transform: scale(1.3);
+}
+
+.cd-item .img2 {
+    opacity: 0;
+    transform: scale(1.3);
+}
+
+.cd-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Dark overlay background */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Tracklist container */
+.tracklist {
+    position: absolute;
+    bottom: -200%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px;
+    transition: bottom 0.5s ease-in-out;
+    font-size: 18px;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow-y: auto; /* Enable scrolling */
+    max-height: 100px; /* Limit the height of the tracklist */
+}
+
+.tracklist ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tracklist li {
+    margin: 5px 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 14px; 
+}
+
+</style>
+<head>
+<title>
+Collection
+</title>
+  <link rel="icon" type="image/x-icon" href="files/images/cd.ico">
+</head>
+<div class="cd-collection" id="cd-collection">
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const cds = [
+            { img1: "files/images/coverart/cd.jpg", img2: "files/images/coverart/cdback,jpg", tracklist: ["JUST ARTIST STRUGGLES", "FLY WITH ME", "TOO MANY PEOPLE", "IN DA DOGHOUSE", "EVIL MUSIC for BAD DOGS", "EAT YOU UP", "b-b-BASS DOWN LOW", "JUST BE COMPETENT", "HERE FOR A GOOD TIME, NOT FOR  A LONG TIME", "SOME PLACE, DIFFERENT TIME"] },
+            { img1: "files/images/coverart/cd2.jpg", img2: "files/images/coverart/cdback.jpg", tracklist: ["do not disturb", "you said you were sad and wanted to kill yoursef", "light rail", "boop! <3", "dont think abt it", "transfer song", "sorry song", "skype song", "lingual wire", "31 days of feeling totally alone"] },
+            { img1: "files/images/coverart/cd3.jpg", img2: "https://cataas.com/cat/says/Hello", tracklist: ["Song 1", "Song 2", "Song 3"] },
+            { img1: "files/images/coverart/cd4.jpg", img2: "https://cataas.com/cat/says/Testing", tracklist: ["Track 1", "Track 2", "Track 3"] },
+            { img1: "files/images/coverart/cd5.jpg", img2: "https://cataas.com/cat/says/Hai", tracklist: ["Track X", "Track Y", "Track Z"] },
+            { img1: "files/images/coverart/cd6.jpg", img2: "https://cataas.com/cat/says/Bleh", tracklist: ["Beat 1", "Beat 2", "Beat 3"] },
+        ];
+
+        const collection = document.getElementById("cd-collection");
+
+        cds.forEach(cd => {
+            const cdItem = document.createElement("div");
+            cdItem.classList.add("cd-item");
+            cdItem.innerHTML = `
+                <img class="img1" src="${cd.img1}" alt="Album Cover">
+                <img class="img2" src="${cd.img2}" alt="Alt Image">
+                <div class="overlay"></div>
+                <div class="tracklist">
+                    <ul>
+                        ${cd.tracklist.map(track => `<li>${track}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+
+            const overlay = cdItem.querySelector(".overlay");
+            const tracklist = cdItem.querySelector(".tracklist");
+
+            let toggled = false;
+            cdItem.addEventListener("click", function () {
+                toggled = !toggled;
+
+                const img1 = cdItem.querySelector(".img1");
+                const img2 = cdItem.querySelector(".img2");
+
+                img1.style.opacity = toggled ? "0" : "1";
+                img2.style.opacity = toggled ? "1" : "0";
+                overlay.style.opacity = toggled ? "1" : "0";
+
+                tracklist.style.bottom = toggled ? "0" : "-200%";
+            });
+
+            collection.appendChild(cdItem);
+        });
+    });
+</script>
