@@ -1,0 +1,292 @@
+
+#bottom {
+    position: relative;
+    margin: 0 auto;
+    background-image: url(bgbottom.png);
+    width: 750px;
+    height: 63px;
+    z-index: 0;
+}
+
+.topbar {
+    width: 100%;
+    height: 29px;
+    font-size: 18px;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    text-align: center;
+    z-index: 1000;
+    background-color: #000000dd;
+    text-color: #eeeeee;
+    box-shadow: 0px 2px 10px #000000;
+}
+
+.container {
+  position: relative;
+  margin: 0 auto;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+  background-image: url("files/images/main/bgfade.png");
+  background-position: center;
+    background-position-x: center;
+    background-position-y: center;
+  background-repeat: repeat-y;
+  width: 750px;
+  z-index: 1;
+  padding-top: 64px;
+}
+
+body{
+    text-align:center;
+    background-color:#000000;
+    margin:0px;
+    font-family: 'IBM Plex Mono', monospace;
+    color:#ffffff;
+    text-shadow: 1px 1px 0px #000000;
+    transform:scale(calc(vw/100.0));
+    }
+
+    #bgcontainer{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index:-1;
+    }
+    
+    #tama{
+background-image: url("files/images/main/Tama.png");
+position:absolute;
+width:365px;
+height:300px;
+margin-left:421px;
+margin-top:-250px;
+z-index:5;
+animation: character 2s infinite ease-in-out;
+}
+
+    #bg1{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-image: url("files/images/main/WARPSKY2.png");
+    background-repeat: repeat;
+    animation: bgs1 40s linear infinite;
+    }
+    
+    #bg2{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-image: url("files/images/main/WARPSKY1.png");
+    background-repeat: repeat;
+    animation: bgs2 60s linear infinite;
+    mix-blend-mode: exclusion;
+    }
+
+    #title{
+background-image: url("files/images/main/Logo.png");
+position:absolute;
+width:505px;
+height:296px;
+margin-left:-50px;
+margin-top:-610px;
+z-index:4;
+animation: character 2s infinite ease-in-out;
+}
+
+    #toothtop{
+    background-image: url("files/images/main/Fuck.png");
+    position:absolute;
+    width:366px;
+    height:220px;
+    margin-left:250px;
+    margin-top:-600px;
+    animation: toothtop 2s infinite ease-in-out;
+    z-index:2;
+    }
+
+    #toothbottom{
+    background-image: url("files/images/main/You.png");
+    position:absolute;
+    width:400px;
+    height:300;
+    margin-left:150px;
+    margin-top:-300px;
+    animation: toothbottom 2s infinite ease-in-out;
+    z-index:2;
+    }
+
+    #character{
+background-image: url("files/images/main/Fox.png");
+position:relative;
+width:708px;
+height:616px;
+margin-left:11px;
+z-index:3;
+animation: character 5s infinite ease-in-out;
+}
+
+#textblock {
+  width: 620px;
+  text-align: justify;
+  margin: 0 auto;
+}
+
+.playlist {
+    line-height:24px;
+    font-family: "Verdana";
+    position:relative;
+    padding:3px;
+    width:350px;
+    margin-top:8px;
+    background-color:#232122;
+    border: 3px solid #eee;
+}
+
+#audio {
+  position: relative;
+  background: #eee;
+  width: 356px;
+  padding: 3px;
+  margin-top: 6px;
+  z-index: 5;
+}
+
+
+button {
+  all: unset;
+    display: unset;
+    font-size: unset;
+    color: unset;
+    cursor: unset;
+    margin-top: unset;
+    margin-right: unset;
+    margin-bottom: unset;
+    margin-left: unset;
+    padding-top: unset;
+    padding-right: unset;
+    padding-bottom: unset;
+    padding-left: unset;
+    text-decoration-line: unset;
+    text-decoration-style: unset;
+    text-decoration-color: unset;
+    text-decoration-thickness: unset;
+  color: #eee;
+  padding: 1px;
+  display: block;
+  text-decoration: none;
+  margin: auto;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#audio {
+  position: relative;
+  background: #080808;
+  width: 356px;
+  padding: 3px;
+  margin-top: 6px;
+  z-index: 5;
+}
+
+#cloudbox {
+    width:400px;
+    height:200px;
+    background-color:080808;
+    overflow:hidden;
+    position:relative;
+    margin-top:150px;	
+    margin-left:0px;
+    transform:scale(2) rotate(-3deg);
+    border: 2px solid #000000;
+    border-image: url('https://heckscaper.com/aminals/main/nitro/ui_antsneon.png') 2 repeat;
+    box-shadow: 0px 0px 0px 2px rgba(10,10,10,1);
+    image-rendering: crisp-edges;
+    z-index:10006;
+    }
+
+    #cloudflyer {
+  width: 3180px;
+  height: 200px;
+  background-image: url("files/images/main/longtrain.png");
+  position: relative;
+  margin-bottom: -200px;
+  animation-name: scroll3;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+    #main {
+  text-align: center;
+  position: absolute;
+  width: 1000px;
+  height: 3369px;
+  left: 50%;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  border-image: url('https://heckscaper.com/aminals/main/nitro/ui_ants.png') 2 repeat;
+  margin-left: -500px;
+  background-image: url("https://heckscaper.com/aminals/main/nitro/bg.png");
+  z-index: -900;
+}
+
+@keyframes scroll3 {
+    0% {transform:translateX(0px);}
+    100% {transform:translateX(-1590px);}
+    }
+
+
+@keyframes spin {
+    0%   {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+    }
+
+@keyframes character{
+0% {transform: scale(1.00) rotate(2deg);}
+50% {transform: scale(1.05) rotate(-2deg);}
+100% {transform: scale(1.0) rotate(2deg);}
+}
+
+@keyframes toothtop{
+    0% {transform: translate(0px,-32px);}
+    50% {transform: translate(-8px,32px);}
+    100% {transform: translate(0px,-32px);}
+    }
+    
+    @keyframes toothbottom{
+    0% {transform: translate(0px,32px);}
+    50% {transform: translate(8px,-32px);}
+    100% {transform: translate(0px,32px);}
+    }
+
+    @keyframes bgs1{
+    0% {background-position:0px 0px;}
+    100% {background-position: 2048px 0px;}
+    }
+    
+    @keyframes bgs2{
+    0% {background-position:0px 0px;}
+    100% {background-position: -2048px 0px;}
+    }
+
+    @keyframes title{
+    0% {transform: scale(1.00) rotate(-2deg);}
+    50% {transform: scale(1.05) rotate(2deg);}
+    100% {transform: scale(1.0) rotate(-2deg);}
+    }
+
+    @keyfreamse tama{
+        0% {transform: scale(1.00) rotate(-2deg);}
+    50% {transform: scale(1.05) rotate(2deg);}
+    100% {transform: scale(1.0) rotate(-2deg);} 
+    }
