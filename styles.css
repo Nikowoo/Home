@@ -126,7 +126,7 @@ animation: character 2s infinite ease-in-out;
     }
 
     #character{
-background-image: url("files/images/main/Fox.png");
+background-image: url("files/images/main/fox.png");
 position:relative;
 width:708px;
 height:616px;
