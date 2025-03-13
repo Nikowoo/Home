@@ -22,6 +22,10 @@
                 function delay (URL) {setTimeout( function() { window.location = URL }, 2000 );}
             </script>
 			<script>
+			    function setUserClicked() {
+        document.cookie = "userClicked=true; path=/; max-age=3600";  // Cookie lasts 1 hour
+    }
+			</script>
             </div>
             <center>
                     <audio controls="" id="audio" autoplay="false" tabindex="0"></audio>
