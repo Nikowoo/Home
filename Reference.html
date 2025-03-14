@@ -1,16 +1,151 @@
 <head>
+<
     <style>
-        input[type="image"] {
-            transition: transform 0.2s ease;
-        }
+	.container {
+  position: relative;
+  margin: 0 auto;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+  background-image: url("files/images/main/bgfade.png");
+  background-position: center;
+    background-position-x: center;
+    background-position-y: center;
+  background-repeat: repeat-y;
+  width: 750px;
+  z-index: 1;
+  padding-top: 64px;
+}
+	
+#bar {
+    background-image: url("files/images/ref/bar.png");
+    background-position: bottom center;
+    background-repeat: repeat-x;
+    width: calc(100% + 128px);
+    overflow: hidden;
+    height: 64px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 1;
+    animation-name: scroll;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
 
-        input[type="image"]:hover {
-            transform: scale(1.1); 
-        }
+@keyframes scroll {
+0% {
+    transform: translate(0px, 0px);
+}
+100% {
+    transform: translate(-96px, 0px);
+}
+}
+
+  #infobox {
+  position: absolute;
+  bottom: 200px;
+    text-align: center;
+    width: 89px;
+    height: 82px;
+    padding: 0px;
+    border: 0px solid #ffffff;
+    border-radius: 0px;
+    overflow: hidden;
+    transition: 0.2s;
+    transition-timing-function: ease-out;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    z-index: 10050;
+    cursor: cell;
+}
+#infobox:hover {
+	background-color:black;
+	width:490px;
+	height:150px;
+	padding:8px 8px 8px 8px;
+	border: 3px solid white;
+	border-radius: 16px;
+	overflow: hidden;
+	transition:0.55s;
+	transition-timing-function: cubic-bezier(0.5,1.8, 0.1, 0.5);
+	box-shadow: 0px 0px 0px 4px rgb(246, 254, 3);
+	}
+
+
+.txt1	{
+    top: 10px;
+  left: 200px;
+	background-image: url("files/images/ref/hover1.png");
+	position:relative;
+	margin-left:300px;
+	margin-top:100px;
+	background-position:top center;
+	background-repeat:no-repeat;
+	transform:rotate(25deg) scale(1.2);
+	}
+
+    .txt1:hover {
+	margin-left: 200px;
+	margin-top: 100px;
+	transform:rotate(0deg) scale(0.8);
+	background-position:bottom center;
+	background-repeat:no-repeat;
+	}
+
+
+
+#stats:hover {
+    height: 180px;
+	width: 192px;
+    background-color: #ffffff;
+    transition: 0.55s;
+    transition-timing-function: cubic-bezier(0.5,1.8, 0.1, 0.5);
+    box-shadow: 0px 0px 0px 2px #ffffff;
+    border-left: 2px solid #202020;
+    border-right: 2px solid #202020;
+    border-bottom: 2px solid #202020;
+	border-top: 2px solid #202020;
+    background-image: url("https://msx.horse/aminals/nitro/gfx_noisew.png");
+    cursor: cell;
+}
+
+#stats {
+    position: relative;
+    top: 60px;
+    left: -25%;
+    margin-left: 260px;
+    width: 24px; 	
+    height: 24px;
+    text-align: center;
+    font-size: 16px;
+    background-color: #202020;
+    z-index: 10010;
+    padding: 16px;
+    border-left: 2px solid #eeeeee;
+    border-right: 2px solid #eeeeee;
+    border-bottom: 2px solid #eeeeee;
+	border-top: 2px solid #eeeeee;
+    transition: 0.6s;
+    transition-delay: 0.1s;
+    transition-timing-function: cubic-bezier(0.3,1.8, 0.1, 0.3);
+    box-shadow: 0px 0px 0px 2px #202020;
+    overflow: hidden;
+    background-image: url("0");
+}
     </style>
 </head>
-<body>
-    <input type="image" src="files/images/main/fox.png" />
+    <div id="bar"></div>
+<div class="container">
+<body><div id="main">
+    <div id="infobox" class="txt1"></div>
+</div>
+<div id="stats">
+<img src="files/images/ref/stats_body.png">
+</div>
 
     <script>
         addEventListener("click", wii);
@@ -20,5 +155,6 @@
             audio.play();
         }
     </script>
+	</div>
 </body>
 
