@@ -1,80 +1,155 @@
-<!DOCTYPE html>
-<head>
-    <link rel="stylesheet" href="styles.css">
-	<link rel="icon" type="image/x-icon" href="files/images/paw.ico">
-</head>
-<body>
-  <div id="bgcontainer"><div id="bg1"><div id="bg2"></div></div></div>    
-  <div class="container">
-    <div id="character"> </div>
-		<div id="title"></div>
-        <div id="toothtop"></div>
-        <div id="toothbottom"></div>
-        <div id="tama"></div>
-        <div id="maintext">
-  <div class="topbar">
-            <a href="https://www.twitch.tv/DonkeyNiko">TWITCH</a> / 
-            <a href="https://www.twitter.com/DonkeyNikoo">TWITTER</a> / 
-            <a href="https://www.youtube.com/@nikoclover">YOUTUBE</a> / 
-            <a href="collection.html">CD COLLECTION</a> / 
-            <a href="javascript:delay('Reference.html')" onclick="document.getElementById('player').play(); setUserClicked();">REFERENCES</a> /
-            <a href="https://github.com/Nikowoo">GITHUB</a>
-            <audio preload="auto" id="player" src="files/audio/references.wav"></audio>
-            <script>
-                function delay (URL) {setTimeout( function() { window.location = URL }, 2000 );}
-            </script>
-			<script>
-			    function setUserClicked() {
-        document.cookie = "userClicked=true; path=/; max-age=3600";  // Cookie lasts 1 hour
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
     }
-			</script>
-            </div>
-            <center>
-                    <audio controls="" id="audio" autoplay="false" tabindex="0"></audio>
-                    <div class="playlist">
-                    <button onclick="changeAudio(0)">Phatworld - Big Hoovz</button>
-                    <button onclick="changeAudio(1)">Kobaryo - Tool-Assisted Speedcore</button>
-                    <button onclick="changeAudio(2)">Bape Fiends - Crunchy Ball Of Dubstep Gum</button>
-                    <button onclick="changeAudio(3)">Eliminate - Weeble Wobble</button>
-                    <button onclick="changeAudio(4)">Renard - Happy Rave ^_^</button>
-                    <button onclick="changeAudio(5)">Rotteen – Crane's Rage</button>
-                    </div>
-					<br>
-					<a name="sites"></a>
-					<img src="files/images/main/Sites.png">
-                </center>
-                <div  class="character"></div>  
-</body>
-<script>
-            const audioFiles = [
-            "files/audio/music/Phatworld - Big Hoovz.mp3",
-            "files/audio/music/Kobaryo - Tool-Assisted Speedcore (TQBF Frame Advance RMX).mp3",
-            "files/audio/music/Bape Fiends - Crunchy Ball Of Dubstep Gum.mp3",
-            "files/audio/music/Eliminate - Weeble Wobble.mp3",
-            "files/audio/music/Renard - Happy Rave ^_^.mp3",
-            "files/audio/music/Rotteen - Crane_s Rage.mp3"
-        ];
-        
-        let currentAudioIndex = 0;
-        const audioElement = document.getElementById('audio');
-        
-        function changeAudio(audioURL) {
-            audioElement.src = audioURL;
-            audioElement.load();
-            audioElement.play();
+
+    .icons {
+        position: absolute;
+        background-image: url("files/images/entry/icon.png");
+        width: 457px;
+        height: 67px;
+        bottom: 14px;
+        right: 14px;
+    }
+
+    .vignette {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 200px rgba(0, 0, 0, 0.9) inset;
+    }
+
+    @keyframes ScanlineAnimationLeft {
+        0% {
+            transform: translateX(0px) translateY(0px);
         }
-        
-        document.querySelectorAll('button').forEach(function(button, index) {
-            button.addEventListener('click', function() {
-                currentAudioIndex = index;
-                const audioURL = audioFiles[currentAudioIndex];
-                changeAudio(audioURL);
-            });
+        100% {
+            transform: translateX(-32px) translateY(-32px);
+        }
+    }
+
+    body::before {
+        content: "";
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: calc(100% + 32px);
+        height: calc(100% + 32px);
+        background-image: url(files/images/entry/tv.png);
+        background-repeat: repeat;
+        z-index: 10000000;
+        animation: ScanlineAnimationLeft 2s linear infinite;
+        pointer-events: none;
+        opacity: 1;
+    }
+
+    #enter {
+        position: absolute;
+        width: 600px;
+        height: 500px;
+        top: 0;
+        bottom: 25%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background-color: rgba(255, 255, 255, 0.60);
+        backdrop-filter: blur(12px);
+        border-radius: 3px;
+        box-shadow: 4px 4px 4px rgba(0, 65, 255, .4);
+    }
+
+
+    #niko:active {
+        cursor: grabbing;
+    }
+
+    #niko img {
+        filter: drop-shadow(2px 2px 0.25rem rgba(75, 150, 255, 1)) saturate(1);
+        float: left;
+    }
+	
+	.tooltip {
+  background-color:rgba(255,255,255,0);
+  color: blue;
+  cursor: pointer;
+  padding: 2px 4px;
+  width: 140px;
+  border:none;
+  text-align: center;
+  font-size: 24px;
+  border-radius: 4px;
+  font-family:"MS PGothic";
+  position: relative;
+  display:block;
+filter:drop-shadow(2px 2px 0.25rem rgba(69, 230, 255,0.8));
+  box-shadow: 2px 2px 2px rgba(0, 100, 255, 0.25);
+}
+</style>
+
+<body>
+    <div class="vignette"></div>
+    <div class="icons"></div>
+    <div id="enter">
+        <div style="text-align:center; font-family:'MS PGothic'">
+            <p><i>♥ Now entering...</i></p>
+            <img src="files/images/entry/logo.png" width="500px" height="150px" style="object-fit:contain; margin-left:20px;margin-bottom:-40px; margin-top:-40px">
+        </div>
+        <hr>
+        <div id="niko">
+            <img src="files/images/entry/sleep.png" width="450px">
+        </div>
+        <div style="margin-left:40px; margin-right:40px;">
+            <p style="font-family:'MS PGothic';font-size:15px;"></p>
+            <p></p>
+            <p style="font-size:16px"><i>before you enter, you should know that this site...</i></p>
+            <p> This page uses JavaScript </p>
+            <p> NO autoplaying elements. </p>
+            <p> WEB-16+ </p>
+            <p> Was designed in Firefox, but should work on mobile. </p>
+            <p></p>
+
+        </div>
+					<button onclick="window.open('https://niko.horse/main', '_parent')" type="button" class="tooltip"> enter site</button>
+    </div>
+
+    <script>
+        const images = [
+            "files/images/entry/controller.png",
+            "files/images/entry/tree.png",
+            "files/images/entry/machine.png,
+            "files/images/entry/deer.png"
+        ];
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+        document.body.style.backgroundImage = url('${randomImage}');
+
+        const niko = document.getElementById('niko');
+        let offsetX, offsetY, isDragging = false;
+
+        niko.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - niko.getBoundingClientRect().left;
+            offsetY = e.clientY - niko.getBoundingClientRect().top;
+            niko.style.cursor = 'grabbing';
         });
-        
-        audioElement.addEventListener('ended', function() {
-            currentAudioIndex = (currentAudioIndex + 1) % audioFiles.length;
-            const nextAudioURL = audioFiles[currentAudioIndex];
-            changeAudio(nextAudioURL);
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const x = e.clientX - offsetX;
+            const y = e.clientY - offsetY;
+            niko.style.left = ${x}px;
+            niko.style.top = ${y}px;
         });
-</script>
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            niko.style.cursor = 'grab';
+        });
+    </script>
+</body>
