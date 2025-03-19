@@ -10,7 +10,7 @@
 
     .icons {
         position: absolute;
-        background-image: url("https://files.catbox.moe/707bnr.png");
+        background-image: url("files/images/entry/icon.png");
         width: 457px;
         height: 67px;
         bottom: 14px;
@@ -43,7 +43,7 @@
         top: 0;
         width: calc(100% + 32px);
         height: calc(100% + 32px);
-        background-image: url(https://files.catbox.moe/xakyzk.png);
+        background-image: url(files/images/entry/tv.png);
         background-repeat: repeat;
         z-index: 10000000;
         animation: ScanlineAnimationLeft 2s linear infinite;
@@ -110,11 +110,11 @@ filter:drop-shadow(2px 2px 0.25rem rgba(69, 230, 255,0.8));
     <div id="enter">
         <div style="text-align:center; font-family:'MS PGothic'">
             <p><i>♥ Now entering...</i></p>
-            <img src="https://files.catbox.moe/8jpnph.png" width="500px" height="150px" style="object-fit:contain; margin-left:20px;margin-bottom:-40px; margin-top:-40px">
+            <img src="files/images/entry/logo.png" width="500px" height="150px" style="object-fit:contain; margin-left:20px;margin-bottom:-40px; margin-top:-40px">
         </div>
         <hr>
         <div id="niko">
-            <img src="https://files.catbox.moe/xmc5tz.png" width="450px">
+            <img src="files/images/entry/sleep.png" width="450px">
         </div>
         <div style="margin-left:40px; margin-right:40px;">
             <p style="font-family:'MS PGothic';font-size:15px;"></p>
@@ -127,14 +127,14 @@ filter:drop-shadow(2px 2px 0.25rem rgba(69, 230, 255,0.8));
             <p></p>
 
         </div>
-					<button onclick="window.open('https://niko.horse/main', '_parent')" type="button" class="tooltip"> enter site</button>
+					<button onclick="window.open('main', '_parent')" type="button" class="tooltip"> enter site</button>
     </div>
     <script>
         const images = [
-            "https://files.catbox.moe/ymlbd8.png",
-            "https://files.catbox.moe/acabpg.png",
-            "https://files.catbox.moe/ajfs4j.png",
-            "https://files.catbox.moe/nk5qhq.png"
+            "files/images/entry/tree.png",
+            "iles/images/entry/machine.png",
+            "iles/images/entry/deer.png",
+            "iles/images/entry/controller.png"
         ];
         const randomImage = images[Math.floor(Math.random() * images.length)];
         document.body.style.backgroundImage = `url('${randomImage}')`;
