@@ -49,7 +49,7 @@
         transform: scale(1.05);
     }
 
-    /* Dark overlay background */
+    /* overlay */
     .overlay {
         position: absolute;
         top: 0;
@@ -72,8 +72,8 @@
         padding: 10px;
         transition: bottom 0.5s ease-in-out;
         font-size: 18px;
-        white-space: nowrap; /* Prevent text wrapping */
-        overflow-y: auto; /* Enable scrolling */
+        white-space: nowrap;
+        overflow-y: auto; 
         max-height: 100px; /* Limit the height of the tracklist */
     }
 
@@ -136,7 +136,7 @@
             const overlay = cdItem.querySelector(".overlay");
             const tracklist = cdItem.querySelector(".tracklist");
 
-            const audio = new Audio(cd.audio);  // Create audio element for each CD
+            const audio = new Audio(cd.audio);
             let toggled = false;
             cdItem.addEventListener("click", function () {
                 toggled = !toggled;
@@ -150,20 +150,20 @@
                 tracklist.style.bottom = toggled ? "0" : "-200%";
 
                 if (toggled) {
-                    // Stop any currently playing audio
+                    
                     if (currentAudio && currentAudio !== audio) {
                         currentAudio.pause();
                         currentAudio.currentTime = 0;
                     }
 
-                    // Play the selected audio
+                    
                     audio.play();
                     currentAudio = audio;  // Set current audio to this one
                 } else {
-                    // Pause the audio if clicked again
+                    
                     audio.pause();
                     audio.currentTime = 0;
-                    currentAudio = null;  // Reset the current audio
+                    currentAudio = null;  
                 }
             });
 
