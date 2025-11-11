@@ -101,9 +101,57 @@ filter:drop-shadow(2px 2px 0.25rem rgba(69, 230, 255,0.8));
   top: 14px;
   left: 14px;
 }
+
+
+
+
+  #bar{
+background-image:url("files/entry/bar.png");
+background-position: bottom center;
+background-repeat: repeat-x;
+width: calc(100% + 128px);
+overflow:hidden;
+height:64px;
+position:fixed;
+top:0px;
+left:0px;
+z-index:100;
+pointer-events:none;
+opacity:1;
+animation-name: scroll;
+animation-duration:1s;
+animation-iteration-count: infinite;
+animation-timing-function: linear;
+}
+
+#bar2{
+background-image:url("files/entry/bar2.png");
+background-position: bottom center;
+background-repeat: repeat-x;
+width: calc(100% + 128px);
+overflow:hidden;
+height:64px;
+position:fixed;
+bottom:0px;
+left:0px;
+z-index:100;
+pointer-events:none;
+opacity:1;
+animation-name: scroll;
+animation-duration:1s;
+animation-iteration-count: infinite;
+animation-timing-function: linear;
+}
+@keyframes scroll{
+0%   {transform: translate(0px, 0px);}
+100%  {transform: translate(-96px, 0px);}
+}
+
 </style>
 
 <body>
+<div id="bar"></div>
+<div id="bar2"></div>
 	<div class="topleft"><script type="text/javascript" src="https://counter.websiteout.com/js/5/6/0/0"></script></div>
     <div class="vignette"></div>
     <div class="icons"></div>
