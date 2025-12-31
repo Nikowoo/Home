@@ -15,3 +15,18 @@ body {
     }
 })();
 </script>
+<style>
+  .preload {
+    display: none;
+  }
+  img {
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<img width="75%" height="auto" src="blog/jpegcat.png" alt="Image" onclick="this.src=(this.src.indexOf('blog/jpegcat.png')!=-1)?'blog/jpegwiki.jpg':'blog/jpegcat.png';">
+<img src="blog/jpegwiki.jpg" class="preload" alt="">
+
+</body>
