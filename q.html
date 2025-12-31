@@ -1,0 +1,17 @@
+<style>
+body {
+    background-image: url("files/images/coverart/wavy.gif");
+    background-color: #cccccc;
+}
+</style>
+
+<script type="text/javascript">
+(function () {
+    var ua = navigator.userAgent.toLowerCase();
+
+    if (ua.indexOf("playstation portable") !== -1) {
+        document.body.style.backgroundImage =
+            'url("files/images/coverart/wavycompressed.gif")';
+    }
+})();
+</script>
