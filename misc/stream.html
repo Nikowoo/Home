@@ -10,15 +10,34 @@
       text-align:center;
       padding:2em;
     }
+    center {
+      display: flex;
+      gap: 1em;
+      align-items: stretch;
+      justify-content: center;
+    }
+    .stream {
+      display: flex;
+      gap: 1em;
+      align-items: stretch;
+      justify-content: center;
+      flex-wrap: nowrap;
+    }   
     #player {
-      width:80%;
-      max-width:1000px;
+      flex: 1;
+      aspect-ratio: 16 / 9;
+      min-width: 0;
       background:black;
+    }
+    #chat {
+      border:none;
+      width: 500px;
+      flex-shrink: 0;
     }
     #offlineImage {
       width:80%;
       max-width:1000px;
-      display:none;
+      display: none;
     }
   </style>
 </head>
@@ -27,9 +46,16 @@
 <h1>stream.niko.horse</h1>
 
 <center>
-<video id="player" controls autoplay muted></video>
+    <div class="stream">
+<video id="player" controls="false" autoplay></video>
 <img id="offlineImage" src="https://niko.horse/files/images/stream/streamofff.png" />
+<iframe id="chat" src="https://www.twitch.tv/embed/donkeyniko/chat?parent=niko.horse"
+        width="500">
+</iframe>
+</div>
 </center>
+<p>Stream chat is handled through twitch.</p>
+<center>
 <script>
 const video = document.getElementById('player');
 const offlineImage = document.getElementById('offlineImage');
