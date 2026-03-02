@@ -1,0 +1,202 @@
+<html>
+<head>
+  <title>stream.niko.horse</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <style>
+    body {
+      background:#111;
+      color:#eee;
+      font-family:monospace;
+      text-align:center;
+      padding:2em;
+    }
+    center {
+      display: flex;
+      gap: 1em;
+      align-items: stretch;
+      justify-content: center;
+    }
+    .stream {
+      display: flex;
+      gap: 1em;
+      align-items: stretch;
+      justify-content: center;
+      flex-wrap: nowrap;
+    }   
+    #player {
+      flex: 1;
+      aspect-ratio: 16 / 9;
+      min-width: 0;
+      background:black;
+    }
+    #chat {
+      border:none;
+      width: 500px;
+      flex-shrink: 0;
+    }
+    #offlineImage {
+      width:80%;
+      max-width:1000px;
+      display: none;
+    }
+    #streamTitle {
+      margin-top: 1em;
+      font-size: 1.2em;
+      color: #00ffcc;
+    }
+    @media (max-width: 1024px) {
+      .stream {
+        flex-wrap: wrap;
+      }
+      #player {
+        max-width: 100%;
+        flex: 0 1 100%;
+      }
+      #chat {
+        width: 100%;
+        flex: 0 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>stream.niko.horse</h1>
+
+<center>
+    <div class="stream">
+        <video id="player" controls="false" autoplay></video>
+        <img id="offlineImage" src="https://niko.horse/files/images/stream/streamofff.png" />
+        <iframe id="chat" src="https://www.twitch.tv/embed/donkeyniko/chat?parent=niko.horse"
+                width="500">
+        </iframe>
+    </div>
+</center>
+
+<div id="streamTitle"></div>
+
+<p>Stream chat is handled through twitch.</p>
+
+<script>
+const video = document.getElementById('player');
+const offlineImage = document.getElementById('offlineImage');
+const streamTitle = document.getElementById('streamTitle');
+
+const streamUrl = 'https://stream.niko.horse/live.m3u8';
+const infoUrl = 'https://stream.niko.horse/info.txt';
+
+let retryCount = 0;
+let titleInterval = null;
+
+const maxRetries = 5;        
+const retryDelay = 300;     
+const recheckInterval = 500;
+const titleRefreshInterval = 500;
+
+let currentTitle = "";
+
+function fetchTitle() {
+    fetch(infoUrl, { cache: 'no-store' })
+        .then(res => {
+            if (!res.ok) throw new Error();
+            return res.text();
+        })
+        .then(text => {
+            if (text.startsWith("title:")) {
+                const newTitle = text.substring(6).trim();
+                if (newTitle !== currentTitle) {
+                    currentTitle = newTitle;
+                    streamTitle.textContent = newTitle;
+                }
+            }
+        })
+        .catch(() => {
+            streamTitle.textContent = "";
+            currentTitle = "";
+        });
+}
+
+function startTitleWatcher() {
+    if (titleInterval) return;
+    fetchTitle(); // immediate check
+    titleInterval = setInterval(fetchTitle, titleRefreshInterval);
+}
+
+function stopTitleWatcher() {
+    if (titleInterval) {
+        clearInterval(titleInterval);
+        titleInterval = null;
+    }
+    streamTitle.textContent = "";
+    currentTitle = "";
+}
+
+function showOffline() {
+    video.style.display = "none";
+    offlineImage.style.display = "block";
+    stopTitleWatcher();
+    setTimeout(checkStream, recheckInterval);
+}
+
+function showPlayer() {
+    video.style.display = "block";
+    offlineImage.style.display = "none";
+    startTitleWatcher();
+}
+
+function startStream() {
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = streamUrl;
+        video.addEventListener('error', handleError);
+        showPlayer();
+    } else if (Hls.isSupported()) {
+        const hls = new Hls({
+            liveSyncDurationCount: 3,
+            lowLatencyMode: true
+        });
+
+        hls.loadSource(streamUrl);
+        hls.attachMedia(video);
+
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+            retryCount = 0;
+            showPlayer();
+        });
+
+        hls.on(Hls.Events.ERROR, function (event, data) {
+            if (data.fatal) {
+                handleError();
+            }
+        });
+    } else {
+        showOffline();
+    }
+}
+
+function handleError() {
+    retryCount++;
+    if (retryCount >= maxRetries) {
+        showOffline();
+    } else {
+        setTimeout(checkStream, retryDelay);
+    }
+}
+
+function checkStream() {
+    fetch(streamUrl, { method: 'HEAD', cache: 'no-store' })
+        .then(response => {
+            if (response.ok) {
+                retryCount = 0;
+                startStream();
+            } else {
+                handleError();
+            }
+        })
+        .catch(() => handleError());
+}
+
+checkStream();
+</script>
+
+</body>
+</html>
