@@ -84,9 +84,11 @@ const streamTitle = document.getElementById('streamTitle');
 
 const streamUrl = 'https://stream.niko.horse/live.m3u8';
 const infoUrl = 'https://stream.niko.horse/info.txt';
+const pingUrl = 'https://stream.niko.horse/ping';
 
 let retryCount = 0;
 let titleInterval = null;
+let pingInterval = null;
 
 const maxRetries = 5;        
 const retryDelay = 300;     
@@ -95,6 +97,10 @@ const titleRefreshInterval = 500;
 
 let currentTitle = "";
 
+function pingServer() {
+    fetch(pingUrl, { cache: 'no-store' }).catch(() => {});
+}
+
 function fetchTitle() {
     fetch(infoUrl, { cache: 'no-store' })
         .then(res => {
@@ -102,12 +108,19 @@ function fetchTitle() {
             return res.text();
         })
         .then(text => {
-            if (text.startsWith("title:")) {
-                const newTitle = text.substring(6).trim();
-                if (newTitle !== currentTitle) {
-                    currentTitle = newTitle;
-                    streamTitle.textContent = newTitle;
-                }
+            const lines = text.split('\n');
+            let newTitle = "";
+            let viewers = "";
+
+            for (const line of lines) {
+                if (line.startsWith("title:")) newTitle = line.substring(6).trim();
+                if (line.startsWith("viewers:")) viewers = line.substring(8).trim();
+            }
+
+            const display = viewers ? `${newTitle} - ${viewers} watching` : newTitle;
+            if (display !== currentTitle) {
+                currentTitle = display;
+                streamTitle.textContent = display;
             }
         })
         .catch(() => {
@@ -118,15 +131,15 @@ function fetchTitle() {
 
 function startTitleWatcher() {
     if (titleInterval) return;
-    fetchTitle(); // immediate check
+    fetchTitle();
     titleInterval = setInterval(fetchTitle, titleRefreshInterval);
+    pingServer();
+    pingInterval = setInterval(pingServer, 500);
 }
 
 function stopTitleWatcher() {
-    if (titleInterval) {
-        clearInterval(titleInterval);
-        titleInterval = null;
-    }
+    if (titleInterval) { clearInterval(titleInterval); titleInterval = null; }
+    if (pingInterval) { clearInterval(pingInterval); pingInterval = null; }
     streamTitle.textContent = "";
     currentTitle = "";
 }
