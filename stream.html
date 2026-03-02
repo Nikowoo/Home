@@ -28,7 +28,7 @@
       color: #00ffcc;
     }
 
-    #streamTitle {
+    #streamViewers {
       font-size: clamp(0.75rem, 2.5vw, 0.95rem);
       color: #aaa;
       margin-top: 0.3em;
@@ -63,6 +63,7 @@
       height: 100%;
       object-fit: contain;
     }
+
     @media (max-width: 899px) {
       .video-wrap {
         flex: none;
@@ -75,7 +76,6 @@
 
     #offlineImage { display: none; }
 
-    /* ── Chat ── */
     #chat {
       border: none;
       background: #0e0e0e;
@@ -85,7 +85,6 @@
     @media (min-width: 900px) {
       #chat {
         width: min(340px, 28vw);
-        height: 100%;
       }
     }
 
@@ -109,8 +108,8 @@
 <body>
 
 <header>
-  <h1>stream.niko.horse</h1>
-  <div id="streamTitle"></div>
+  <h1 id="streamTitle">stream.niko.horse</h1>
+  <div id="streamViewers"></div>
 </header>
 
 <main class="stream-layout">
@@ -130,34 +129,56 @@
 const video = document.getElementById('player');
 const offlineImage = document.getElementById('offlineImage');
 const streamTitle = document.getElementById('streamTitle');
+const streamViewers = document.getElementById('streamViewers');
 
 const streamUrl = 'https://stream.niko.horse/live.m3u8';
 const infoUrl   = 'https://stream.niko.horse/info.txt';
 const pingUrl   = 'https://stream.niko.horse/ping';
 
+const defaultTitle = 'Stream Offline';
+
 let retryCount = 0, titleInterval = null, pingInterval = null;
 const maxRetries = 5, retryDelay = 300, recheckInterval = 500, titleRefreshInterval = 500;
-let currentTitle = "";
+let currentTitle = "", currentViewers = "";
+let streamIsLive = false;
 
 function pingServer() { fetch(pingUrl, { cache: 'no-store' }).catch(() => {}); }
 
 function fetchTitle() {
   fetch(infoUrl, { cache: 'no-store' })
-    .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+    .then(r => {
+      if (!r.ok) return;
+      return r.text();
+    })
     .then(text => {
+      if (!text) return;
+
       const lines = text.split('\n');
       let title = "", viewers = "";
+
       for (const line of lines) {
         if (line.startsWith("title:"))   title   = line.substring(6).trim();
         if (line.startsWith("viewers:")) viewers = line.substring(8).trim();
       }
-      const display = viewers ? `${title} · ${viewers} watching` : title;
-      if (display !== currentTitle) { currentTitle = display; streamTitle.textContent = display; }
+
+      if (title && title !== currentTitle) {
+        currentTitle = title;
+        streamTitle.textContent = title;
+        document.title = title;
+      }
+
+      const viewersDisplay = viewers ? `${viewers} watching` : "";
+      if (viewersDisplay !== currentViewers) {
+        currentViewers = viewersDisplay;
+        streamViewers.textContent = viewersDisplay;
+      }
     })
-    .catch(() => { streamTitle.textContent = ""; currentTitle = ""; });
+    .catch(() => {
+    });
 }
 
 function startTitleWatcher() {
+  streamIsLive = true;
   if (titleInterval) return;
   fetchTitle();
   titleInterval = setInterval(fetchTitle, titleRefreshInterval);
@@ -166,14 +187,27 @@ function startTitleWatcher() {
 }
 
 function stopTitleWatcher() {
+  streamIsLive = false;
   if (titleInterval) { clearInterval(titleInterval); titleInterval = null; }
   if (pingInterval)  { clearInterval(pingInterval);  pingInterval  = null; }
-  streamTitle.textContent = ""; currentTitle = "";
+  currentTitle = "";
+  currentViewers = "";
 }
 
 function showOffline() {
-  video.style.display = "none"; offlineImage.style.display = "block";
-  stopTitleWatcher(); setTimeout(checkStream, recheckInterval);
+  video.style.display = "none";
+  offlineImage.style.display = "block";
+
+  stopTitleWatcher();
+
+  currentTitle = "";
+  currentViewers = "";
+
+  streamTitle.textContent = defaultTitle;
+  document.title = defaultTitle;
+  streamViewers.textContent = "";
+
+  setTimeout(checkStream, recheckInterval);
 }
 
 function showPlayer() {
@@ -207,6 +241,23 @@ function checkStream() {
 }
 
 checkStream();
+
+    function syncChatHeight() {
+  const videoWrap = document.querySelector('.video-wrap');
+  const chat = document.getElementById('chat');
+  if (window.innerWidth >= 900) { // desktop only
+    const height = videoWrap.offsetHeight;
+    chat.style.height = `${height}px`;
+  } else {
+    chat.style.height = '420px'; // fallback for mobile
+  }
+}
+
+window.addEventListener('load', syncChatHeight);
+window.addEventListener('resize', syncChatHeight);
+
+const resizeObserver = new ResizeObserver(syncChatHeight);
+resizeObserver.observe(document.querySelector('.video-wrap'));
 </script>
 
 </body>
