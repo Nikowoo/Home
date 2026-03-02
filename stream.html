@@ -1,81 +1,130 @@
 <html>
 <head>
   <title>stream.niko.horse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background:#111;
-      color:#eee;
-      font-family:monospace;
-      text-align:center;
-      padding:2em;
-    }
-    center {
+      background: #111;
+      color: #eee;
+      font-family: monospace;
+      min-height: 100vh;
       display: flex;
-      gap: 1em;
-      align-items: stretch;
-      justify-content: center;
+      flex-direction: column;
     }
-    .stream {
-      display: flex;
-      gap: 1em;
-      align-items: stretch;
-      justify-content: center;
-      flex-wrap: nowrap;
-    }   
-    #player {
-      flex: 1;
-      aspect-ratio: 16 / 9;
-      min-width: 0;
-      background:black;
-    }
-    #chat {
-      border:none;
-      width: 500px;
+
+    header {
+      text-align: center;
+      padding: 0.75em 1em;
+      border-bottom: 1px solid #222;
       flex-shrink: 0;
     }
-    #offlineImage {
-      width:80%;
-      max-width:1000px;
-      display: none;
-    }
-    #streamTitle {
-      margin-top: 1em;
-      font-size: 1.2em;
+
+    header h1 {
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      letter-spacing: 0.05em;
       color: #00ffcc;
     }
-    @media (max-width: 1024px) {
-      .stream {
-        flex-wrap: wrap;
+
+    #streamTitle {
+      font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+      color: #aaa;
+      margin-top: 0.3em;
+      min-height: 1.2em;
+    }
+
+    .stream-layout {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    @media (min-width: 900px) {
+      .stream-layout {
+        flex-direction: row;
+        height: calc(100vh - 70px);
       }
-      #player {
-        max-width: 100%;
-        flex: 0 1 100%;
+    }
+
+    .video-wrap {
+      flex: 1;
+      background: #000;
+      position: relative;
+      min-height: 0;
+    }
+
+    #player, #offlineImage {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    @media (max-width: 899px) {
+      .video-wrap {
+        flex: none;
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        height: 0;
       }
+    }
+
+    #offlineImage { display: none; }
+
+    /* ── Chat ── */
+    #chat {
+      border: none;
+      background: #0e0e0e;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 900px) {
+      #chat {
+        width: min(340px, 28vw);
+        height: 100%;
+      }
+    }
+
+    @media (max-width: 899px) {
       #chat {
         width: 100%;
-        flex: 0 1 100%;
+        height: 420px;
       }
+    }
+
+    footer {
+      text-align: center;
+      padding: 0.5em 1em;
+      font-size: 0.75rem;
+      color: #444;
+      border-top: 1px solid #1a1a1a;
+      flex-shrink: 0;
     }
   </style>
 </head>
 <body>
 
-<h1>stream.niko.horse</h1>
+<header>
+  <h1>stream.niko.horse</h1>
+  <div id="streamTitle"></div>
+</header>
 
-<center>
-    <div class="stream">
-        <video id="player" controls="false" autoplay></video>
-        <img id="offlineImage" src="https://niko.horse/files/images/stream/streamofff.png" />
-        <iframe id="chat" src="https://www.twitch.tv/embed/donkeyniko/chat?parent=niko.horse"
-                width="500">
-        </iframe>
-    </div>
-</center>
+<main class="stream-layout">
+  <div class="video-wrap">
+    <video id="player" controls autoplay playsinline></video>
+    <img id="offlineImage" src="https://niko.horse/files/images/stream/streamofff.png" alt="Stream offline" />
+  </div>
+  <iframe id="chat"
+    src="https://www.twitch.tv/embed/donkeyniko/chat?parent=niko.horse"
+    title="Twitch Chat">
+  </iframe>
+</main>
 
-<div id="streamTitle"></div>
-
-<p>Stream chat is handled through twitch.</p>
+<footer>Stream chat handled via Twitch</footer>
 
 <script>
 const video = document.getElementById('player');
@@ -83,129 +132,78 @@ const offlineImage = document.getElementById('offlineImage');
 const streamTitle = document.getElementById('streamTitle');
 
 const streamUrl = 'https://stream.niko.horse/live.m3u8';
-const infoUrl = 'https://stream.niko.horse/info.txt';
-const pingUrl = 'https://stream.niko.horse/ping';
+const infoUrl   = 'https://stream.niko.horse/info.txt';
+const pingUrl   = 'https://stream.niko.horse/ping';
 
-let retryCount = 0;
-let titleInterval = null;
-let pingInterval = null;
-
-const maxRetries = 5;        
-const retryDelay = 300;     
-const recheckInterval = 500;
-const titleRefreshInterval = 500;
-
+let retryCount = 0, titleInterval = null, pingInterval = null;
+const maxRetries = 5, retryDelay = 300, recheckInterval = 500, titleRefreshInterval = 500;
 let currentTitle = "";
 
-function pingServer() {
-    fetch(pingUrl, { cache: 'no-store' }).catch(() => {});
-}
+function pingServer() { fetch(pingUrl, { cache: 'no-store' }).catch(() => {}); }
 
 function fetchTitle() {
-    fetch(infoUrl, { cache: 'no-store' })
-        .then(res => {
-            if (!res.ok) throw new Error();
-            return res.text();
-        })
-        .then(text => {
-            const lines = text.split('\n');
-            let newTitle = "";
-            let viewers = "";
-
-            for (const line of lines) {
-                if (line.startsWith("title:")) newTitle = line.substring(6).trim();
-                if (line.startsWith("viewers:")) viewers = line.substring(8).trim();
-            }
-
-            const display = viewers ? `${newTitle} - ${viewers} watching` : newTitle;
-            if (display !== currentTitle) {
-                currentTitle = display;
-                streamTitle.textContent = display;
-            }
-        })
-        .catch(() => {
-            streamTitle.textContent = "";
-            currentTitle = "";
-        });
+  fetch(infoUrl, { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+    .then(text => {
+      const lines = text.split('\n');
+      let title = "", viewers = "";
+      for (const line of lines) {
+        if (line.startsWith("title:"))   title   = line.substring(6).trim();
+        if (line.startsWith("viewers:")) viewers = line.substring(8).trim();
+      }
+      const display = viewers ? `${title} · ${viewers} watching` : title;
+      if (display !== currentTitle) { currentTitle = display; streamTitle.textContent = display; }
+    })
+    .catch(() => { streamTitle.textContent = ""; currentTitle = ""; });
 }
 
 function startTitleWatcher() {
-    if (titleInterval) return;
-    fetchTitle();
-    titleInterval = setInterval(fetchTitle, titleRefreshInterval);
-    pingServer();
-    pingInterval = setInterval(pingServer, 500);
+  if (titleInterval) return;
+  fetchTitle();
+  titleInterval = setInterval(fetchTitle, titleRefreshInterval);
+  pingServer();
+  pingInterval = setInterval(pingServer, 500);
 }
 
 function stopTitleWatcher() {
-    if (titleInterval) { clearInterval(titleInterval); titleInterval = null; }
-    if (pingInterval) { clearInterval(pingInterval); pingInterval = null; }
-    streamTitle.textContent = "";
-    currentTitle = "";
+  if (titleInterval) { clearInterval(titleInterval); titleInterval = null; }
+  if (pingInterval)  { clearInterval(pingInterval);  pingInterval  = null; }
+  streamTitle.textContent = ""; currentTitle = "";
 }
 
 function showOffline() {
-    video.style.display = "none";
-    offlineImage.style.display = "block";
-    stopTitleWatcher();
-    setTimeout(checkStream, recheckInterval);
+  video.style.display = "none"; offlineImage.style.display = "block";
+  stopTitleWatcher(); setTimeout(checkStream, recheckInterval);
 }
 
 function showPlayer() {
-    video.style.display = "block";
-    offlineImage.style.display = "none";
-    startTitleWatcher();
-}
-
-function startStream() {
-    if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = streamUrl;
-        video.addEventListener('error', handleError);
-        showPlayer();
-    } else if (Hls.isSupported()) {
-        const hls = new Hls({
-            liveSyncDurationCount: 3,
-            lowLatencyMode: true
-        });
-
-        hls.loadSource(streamUrl);
-        hls.attachMedia(video);
-
-        hls.on(Hls.Events.MANIFEST_PARSED, function () {
-            retryCount = 0;
-            showPlayer();
-        });
-
-        hls.on(Hls.Events.ERROR, function (event, data) {
-            if (data.fatal) {
-                handleError();
-            }
-        });
-    } else {
-        showOffline();
-    }
+  video.style.display = "block"; offlineImage.style.display = "none";
+  startTitleWatcher();
 }
 
 function handleError() {
-    retryCount++;
-    if (retryCount >= maxRetries) {
-        showOffline();
-    } else {
-        setTimeout(checkStream, retryDelay);
-    }
+  retryCount++;
+  if (retryCount >= maxRetries) showOffline();
+  else setTimeout(checkStream, retryDelay);
+}
+
+function startStream() {
+  if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = streamUrl;
+    video.addEventListener('error', handleError);
+    showPlayer();
+  } else if (Hls.isSupported()) {
+    const hls = new Hls({ liveSyncDurationCount: 3, lowLatencyMode: true });
+    hls.loadSource(streamUrl); hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, () => { retryCount = 0; showPlayer(); });
+    hls.on(Hls.Events.ERROR, (_, data) => { if (data.fatal) handleError(); });
+  } else { showOffline(); }
 }
 
 function checkStream() {
-    fetch(streamUrl, { method: 'HEAD', cache: 'no-store' })
-        .then(response => {
-            if (response.ok) {
-                retryCount = 0;
-                startStream();
-            } else {
-                handleError();
-            }
-        })
-        .catch(() => handleError());
+  fetch(streamUrl, { method: 'HEAD', cache: 'no-store' })
+    .then(r => { if (r.ok) { retryCount = 0; startStream(); } else handleError(); })
+    .catch(() => handleError());
 }
 
 checkStream();
