@@ -90,8 +90,8 @@ let retryCount = 0;
 let titleInterval = null;
 let pingInterval = null;
 
-const maxRetries = 5;        
-const retryDelay = 300;     
+const maxRetries = 5;
+const retryDelay = 300;
 const recheckInterval = 500;
 const titleRefreshInterval = 500;
 
@@ -111,13 +111,19 @@ function fetchTitle() {
             const lines = text.split('\n');
             let newTitle = "";
             let viewers = "";
+            let uptime = "";
 
             for (const line of lines) {
                 if (line.startsWith("title:")) newTitle = line.substring(6).trim();
                 if (line.startsWith("viewers:")) viewers = line.substring(8).trim();
+                if (line.startsWith("uptime:")) uptime = line.substring(7).trim();
             }
 
-            const display = viewers ? `${newTitle} - ${viewers} watching` : newTitle;
+            const parts = [newTitle];
+            if (viewers) parts.push(` ${viewers} watching`);
+            if (uptime) parts.push(` ${uptime}`);
+            const display = parts.join(" - ");
+
             if (display !== currentTitle) {
                 currentTitle = display;
                 streamTitle.textContent = display;
@@ -134,7 +140,7 @@ function startTitleWatcher() {
     fetchTitle();
     titleInterval = setInterval(fetchTitle, titleRefreshInterval);
     pingServer();
-    pingInterval = setInterval(pingServer, 500);
+    pingInterval = setInterval(pingServer, 5000);
 }
 
 function stopTitleWatcher() {
