@@ -1,0 +1,99 @@
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #111;
+      color: #eee;
+      font-family: monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 0.75em 1em;
+      border-bottom: 1px solid #222;
+      flex-shrink: 0;
+    }
+
+    header h1 {
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      letter-spacing: 0.05em;
+      color: #00ffcc;
+    }
+
+    #streamViewers {
+      font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+      color: #aaa;
+      margin-top: 0.3em;
+      min-height: 1.2em;
+    }
+
+    .stream-layout {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    @media (min-width: 900px) {
+      .stream-layout {
+        flex-direction: row;
+        height: calc(100vh - 70px);
+      }
+    }
+
+    .video-wrap {
+      flex: 1;
+      background: #000;
+      position: relative;
+      min-height: 0;
+    }
+
+    #player, #offlineImage {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    @media (max-width: 899px) {
+      .video-wrap {
+        flex: none;
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        height: 0;
+      }
+    }
+
+    #offlineImage { display: none; }
+
+    #chat {
+      border: none;
+      background: #0e0e0e;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 900px) {
+      #chat {
+        width: min(340px, 28vw);
+      }
+    }
+
+    @media (max-width: 899px) {
+      #chat {
+        width: 100%;
+        height: 420px;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 0.5em 1em;
+      font-size: 0.75rem;
+      color: #444;
+      border-top: 1px solid #1a1a1a;
+      flex-shrink: 0;
+    }
