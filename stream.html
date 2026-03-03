@@ -122,7 +122,29 @@
     title="Twitch Chat">
   </iframe>
 </main>
+    <button id="get-links">Previous Streams</button>
+    <div id="list"></div>
 
+    <script>
+        const btn = document.getElementById('get-links');
+        const list = document.getElementById('list');
+
+        btn.onclick = () => {
+            fetch('https://stream.niko.horse/static/past.json')
+                .then(res => res.json())
+                .then(data => {
+                    list.innerHTML = ''; 
+                    data.forEach(url => {
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.textContent = decodeURIComponent(url.split('/').pop());
+                        
+                        list.appendChild(a);
+                        list.appendChild(document.createElement('br'));
+                    });
+                });
+        };
+    </script>
 <footer>Stream chat handled via Twitch</footer>
 
 <script>
