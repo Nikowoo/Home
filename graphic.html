@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Graphics</title>
+<style type="text/css">
+body { background: #121212; margin: 0; padding: 0; }
+canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="diceCanvas"></canvas>
+<script type="text/javascript">
+var W = 220;
+var H = 220;
+var LOOP_PERIOD = 360;
+var time = 0;
+
+var canvas = document.getElementById("diceCanvas");
+canvas.width = W;
+canvas.height = H;
+canvas.style.width = W + "px";
+canvas.style.height = H + "px";
+
+var ctx = canvas.getContext("2d");
+
+/* Draw a dice face using canvas primitives - no image needed */
+function drawDiceFace(cx, cy, size, angle, t) {
+  var half = size / 2;
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(angle);
+
+  /* Dice body */
+  ctx.fillStyle = "#ffffff";
+  ctx.strokeStyle = "#cccccc";
+  ctx.lineWidth = 2;
+  var r = size * 0.12;
+  var x0 = -half;
+  var y0 = -half;
+  ctx.beginPath();
+  ctx.moveTo(x0 + r, y0);
+  ctx.lineTo(x0 + size - r, y0);
+  ctx.arcTo(x0 + size, y0, x0 + size, y0 + r, r);
+  ctx.lineTo(x0 + size, y0 + size - r);
+  ctx.arcTo(x0 + size, y0 + size, x0 + size - r, y0 + size, r);
+  ctx.lineTo(x0 + r, y0 + size);
+  ctx.arcTo(x0, y0 + size, x0, y0 + size - r, r);
+  ctx.lineTo(x0, y0 + r);
+  ctx.arcTo(x0, y0, x0 + r, y0, r);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+
+  /* Animate which face is shown based on time */
+  var face = Math.floor(t / (Math.PI * 2 / 6)) % 6 + 1;
+  var dotR = size * 0.07;
+  var q = size * 0.27;
+  ctx.fillStyle = "#222222";
+
+  var dots = [];
+  if (face === 1) {
+    dots = [[0, 0]];
+  } else if (face === 2) {
+    dots = [[-q, -q], [q, q]];
+  } else if (face === 3) {
+    dots = [[-q, -q], [0, 0], [q, q]];
+  } else if (face === 4) {
+    dots = [[-q, -q], [q, -q], [-q, q], [q, q]];
+  } else if (face === 5) {
+    dots = [[-q, -q], [q, -q], [0, 0], [-q, q], [q, q]];
+  } else {
+    dots = [[-q, -q], [q, -q], [-q, 0], [q, 0], [-q, q], [q, q]];
+  }
+
+  for (var i = 0; i < dots.length; i++) {
+    ctx.beginPath();
+    ctx.arc(dots[i][0], dots[i][1], dotR, 0, Math.PI * 2, false);
+    ctx.fill();
+  }
+
+  ctx.restore();
+}
+
+function drawCheckerboard(t) {
+  var size = 20;
+  var cols = Math.ceil(W / size) + 1;
+  var rows = Math.ceil(H / size) + 1;
+  for (var row = 0; row < rows; row++) {
+    for (var col = 0; col < cols; col++) {
+      var x = col * size;
+      var y = row * size;
+      var offset = Math.sin(t + (x + y) * 0.02) * 5;
+      var checker = (col + row) % 2;
+      var r = Math.floor(100 + 155 * Math.sin(t + x * 0.01));
+      var g = Math.floor(100 + 155 * Math.sin(t + y * 0.01));
+      var b = Math.floor(100 + 155 * Math.sin(t));
+      if (checker) {
+        ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+      } else {
+        ctx.fillStyle = "rgb(" + Math.floor(r/2) + "," + Math.floor(g/2) + "," + Math.floor(b/2) + ")";
+      }
+      ctx.fillRect(x + offset, y + offset, size, size);
+    }
+  }
+}
+
+function loop() {
+  time = (time + 1) % LOOP_PERIOD;
+  var t = (time / LOOP_PERIOD) * Math.PI * 2;
+
+  ctx.clearRect(0, 0, W, H);
+  drawCheckerboard(t);
+
+  var dx = W / 2 + Math.sin(t) * (W * 0.3);
+  var dy = H / 2 + Math.cos(t) * (H * 0.3);
+  drawDiceFace(dx, dy, 50, t, t);
+
+  if (typeof requestAnimationFrame !== "undefined") {
+    requestAnimationFrame(loop);
+  } else {
+    setTimeout(loop, 1000 / 30);
+  }
+}
+
+loop();
+</script>
+</body>
+</html>
