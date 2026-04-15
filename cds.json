@@ -1,0 +1,159 @@
+{
+  "cds": [
+    {
+      "img1": "files/images/coverart/cd.jpg",
+      "img2": "files/images/coverart/cdback.jpg",
+      "tracklist": ["Track1", "Track2", "Track3"],
+      "audio": "files/audio/track1.mp3"
+    },
+    {
+      "img1": "files/images/coverart/cd2.jpg",
+      "img2": "files/images/coverart/cdback.JPEG",
+      "tracklist": [
+        "do not disturb",
+        "you said you were sad and wanted to kill yoursef",
+        "light rail",
+        "boop! <3",
+        "dont think abt it",
+        "transfer song",
+        "sorry song",
+        "skype song",
+        "lingual wire",
+        "31 days of feeling totally alone"
+      ],
+      "audio": "files/audio/music/collection/skype.mp3"
+    },
+    {
+      "img1": "files/images/coverart/cd3.jpg",
+      "img2": "files/images/coverart/cdback2.JPEG",
+      "tracklist": [
+        "HARDER DADDY",
+        "ASS UP!",
+        "LET ME MAIL YOUR PACKAGE",
+        "BORIS JOHNSON DEATH INCANTATION",
+        "DRAIN PUPPY MAIL ME IMMEDIATELY",
+        "FEED YOUR LOCAL MAILPUP",
+        "DANCING WITH SVANTE"
+      ],
+      "audio": "files/audio/music/collection/feed.mp3"
+    },
+    {
+      "img1": "files/images/coverart/cd4.jpg",
+      "img2": "files/images/coverart/cdback4.jpg",
+      "tracklist": [
+        "HEWWO! OWO",
+        "ALSKAR DIG!!",
+        "THE MAKE UP BEAR",
+        "PROTECC ATTACC SEXYBACC",
+        "NAMX (MAILPUP FLIP)",
+        "I REALLY REALLY REALLY HATE THE WORLD BUT THATS OK AT LEAST IVE GOT MY GABBER DRUM",
+        "MYSPACE BANGER 3008",
+        "MY DOG RUNS ON SOYLENT"
+      ],
+      "audio": "files/audio/music/collection/hewwo.mp3"
+    },
+    {
+      "img1": "files/images/coverart/cd5.jpg",
+      "img2": "files/images/coverart/cdback5.jpg",
+      "tracklist": [
+        "The Deacon",
+        "Absent",
+        "On Hold",
+        "The Most Important",
+        "Thing in the World",
+        "I Wanna See You Truly Live",
+        "But Secretly (It Is)",
+        "It's Not That Hot Anymore",
+        "Stuck",
+        "Today",
+        "Save for Bob",
+        "Have Some"
+      ],
+      "audio": "files/audio/music/collection/some.mp3"
+    },
+    {
+      "img1": "files/images/coverart/cd6.png",
+      "img2": "files/images/coverart/cdback6.jpg",
+      "tracklist": [
+        "JUST ARTIST STRUGGLES",
+        "FLY WITH ME",
+        "TOO MANY PEOPLE",
+        "IN DA DOGHOUSE",
+        "EVIL MUSIC for BAD DOGS",
+        "EAT YOU UP",
+        "b-b-BASS DOWN LOW",
+        "JUST BE COMPETENT",
+        "HERE FOR A GOOD TIME, NOT FOR A LONG TIME",
+        "SOME PLACE, DIFFERENT TIME"
+      ],
+      "audio": "files/audio/music/collection/russy.mp3"
+    },
+    {
+      "img1": "files/images/coverart/cd7.jpg",
+      "img2": "files/images/coverart/cdback7.jpg",
+      "tracklist": [
+        "nighttime oracle",
+        "place (feat. Paranoid Americans & Monkey and The Permavirgins)",
+        "lapis",
+        "tvcc",
+        "poindexter",
+        "a quick one before you go",
+        "the things i love and why i love them",
+        "sick",
+        "i think of children, i think of you in trouble",
+        "neon sky",
+        "...and why i love you"
+      ],
+      "audio": "files/audio/music/collection/place.mp3"
+    },
+    {
+      "img1": "files/images/coverart/cd8.jpg",
+      "img2": "files/images/coverart/cd8.jpg",
+      "tracklist": [
+        "Good Family Values",
+        "Kevin Domination",
+        "The Old Abandoned House is Somewhere I Don't Wanna Be",
+        "N-E-E-D-L-L-L-L-L-E-L-L-E-L-E-S-S-L-E-S",
+        "Burdy Dorky",
+        "Me and Not Johnny",
+        "Bikini Babes Magazine",
+        "Kevin's Bike Got Destroyed",
+        "The Entire Plot Of Ed, Edd, n Eddy Summarized Into Once Sentence",
+        "Mondo A-Go Go (Fuck Yourself Because Eddy’s Brother is an Asshole)",
+        "The Eds Haven’t Been Trying to Buy Actual Jawbreakers This Whole Time, They’ve Been Trying to Buy Records From the 1990s Emo Band “Jawbreaker” But They’re Too Dumb to Realize That A CD Doesn’t Cost 25 FUCKING CENTS",
+        "I’m Tired of Seeing All These Fucking EENE AMVs on YouTube All the Damn Time",
+        "I Fucking Hate My Friends, They Don't Understand My Love for the Eds",
+        "I Dream of Kevin",
+        "I Got Ran Over By Rolf's Tractor (But I'm Okay)",
+        "The Lane Never Ends",
+        "Why Is There a Shit Ton of Double D Rule 34",
+        "Kevin, You're Gonna Be Someone Someday",
+        "Kevin (Almost) Becomes a Dork",
+        "Bike Ride",
+        "I'm Not Gonna Give My Jawbreakers Away",
+        "Stuck in Purgatory",
+        "Dedorkinization",
+        "The 102nd Song",
+        "Kevin Moves Out of Peach Creek"
+      ],
+      "audio": "files/audio/music/collection/kevin.mp3"
+    },
+    {
+      "img1": "files/images/coverart/cd10.jpg",
+      "img2": "files/images/coverart/cdback10.png",
+      "tracklist": [
+        "Never Meant",
+        "The Summer Ends",
+        "Honestly?",
+        "For Sure",
+        "For Sure",
+        "You Know I should be Leaving Soon",
+        "But The Regrets Are Killing me",
+        "I'll See You When We're Both Not So Emotional",
+        "Stay Home",
+        "That One Wurlitzer"
+      ],
+      "audio": "files/audio/music/collection/never.mp3"
+    }
+  ]
+}
