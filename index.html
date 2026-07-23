@@ -1,207 +1,446 @@
+<!--   
+                  ▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒░                              ░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒░                 
+                  ▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒░▄▄▄▄▄▄                     ▄▄▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▄▄               
+                  ▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░                 ░▒▒▒▓▓▓▓▓▓▓▓▒▒▓▓▓▓▓▓▓▓▒▒▒░             
+                 ▒▒▒▓▓▓▓▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▒▒░               ▒▒▒▓▓▓▓▓▓▓▓▒▒▒▒▒▓▓▓▓▓▓▓▓▓▒▒░            
+             ░▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒▒░           ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▒▒▒░░        
+             ▒▒▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▒▒░          ▐▒▒▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▒░        
+             ▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒░        
+             ▒▒▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▒░        
+             ▒▒▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒░        
+             ▒▒▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▒░        
+             ▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▒▒▒░        
+             ▒▒▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▓▓▓▒▒▒░░░░░░░          
+             ░▒▒▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▒▓▓▒▒▒▒▒▒▓▓▓▓▒▒░                 
+              ░░▒▒▒▓▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▓▓▓▓▒▒░                 
+               ▄▄▒▒▒▓▓▓▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▒▒▓▓▓▓▒▒░                 
+             ░▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▓▓▓▓▒▒░                 
+            ▐▒▒▓▓▓▒▒▒░░░░░░░░░░░░░▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▒▓▓▓▒▒░▄                
+         ░▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒░             
+        ░▒▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▓▓▓▓▒▒░            
+        ░▒▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▓▓▓▓▒▒░            
+        ░▒▓▓▓▓▒▒░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▓▓▓▓▒▒░            
+        ░▒▓▓▓▓▒▒░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▓▓▓▓▒▒░            
+        ░▒▓▓▓▓▒▒░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░▒▒▓▓▓▓▒▒░            
+        ░▒▓▓▓▓▒▒░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░▒▒▓▓▓▓▒▒░            
+        ░▒▓▓▓▓▒▒░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░▒▒▓▓▓▓▒▒░            
+        ░▒▓▓▓▓▒▒░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░▒▒▓▓▓▓▓▒▒░░          
+        ░▒▓▓▓▓▒▒░░░░░░░░▒▒▒▒▒▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▒▒▒▒▒░░░░░░░░░░░░░▒▒▓▓▓▓▓▓▓▒▒▒░        
+        ░▒▓▓▓▓▒▒░░░░░░░▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▒▒▒▒▒░░░░░░░░░░░▒▒▒▓▓▓▓▓▓▓▓▒▒░▄      
+        ░▒▓▓▓▓▒▒░░░░░░▒▒▒▓▓▓▓▓▒▒▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▒▒▒▓▓▓▓▒▒▒░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░   
+       ▐▒▒▓▓▓▓▒▒░░░░▒▒▒▒▓▓▓▓▓▒▒▒▒▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▒▒▒▒▒▓▓▓▓▓▒▒▒░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▒░   
+    ░▒▒▒▒▒▒▒▒▒▒▒░░▒▒▒▓▓▓▓▓▓▓▓▒▒▒▒▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▒▒▒▒▒▓▓▓▓▓▓▓▒▒▒▒░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▒░   
+   ░▒▒▓▓▓▒▒▒░░░░░▒▒▓▓▓▓▓▓▓▓▓▓▒▒▒▒▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▒▒▒▒▒▓▓▓▓▓▓▓▓▓▒▒░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▒░   
+    ░▒▒▒▒▒▒░░░░░░▒▒▒▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▒▒▒░░░░▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒░   
+     ░░▒░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒░   
+    ░▒▒▒▒▒▒░░░░░░▒▒▒▒▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▓▓▓▓▓▓▓▓▓▓▓▒▒▒░░   
+   ░▒▒▓▓▓▒▒░░░░░░▒▒▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░▒▒▓▓▓▓▓▓▓▓▓▒▒░       
+    ▒▒▒▒▒▒▒▒░░░░░▒▒▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░▒▒▓▓▓▓▓▓▓▒▒▒░        
+      ░░▒░░▒▒░░░░▒▒▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░▒▒▓▓▓▓▒▒▒░░          
+         ░▒▒▒▒▒▒░▒▒▒▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░▒▒▓▓▓▓▒▒░            
+        ░▒▒▓▓▒▒▒░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▓▓▓▒▒▒░░░░░░░░░░░░░░▒▒░░░░▒▒▓▓▓▓▒▒░            
+        ░▒▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▒▒▒▒▓▓▓▓▒▒▒▒▒▓▓▓▓▒▒▒░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▒▒▒▄▄          
+        ░▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▒▒▒▒▒▒▒▓▓▓▓▓▒▒▒▒▒░░░░░░▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒░        
+       ▄▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▒▒░ ░▒▒▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▓▓▓▓▒▒░       
+    ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░   
+   ▒▒▒▓▓▓▒▒▒░░░░░░▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░▒▒▓▓▓▒▒░   
+▀▀▀▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▀▀
+▓▓▓▓▒▒▒▒░░░░░░░░░▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▓▓▓▓▒▒░           ░▒▒▓▓▓▓▒▒▒▒▒▒▒▓▓▓▓▓▓▓▒▒▒▒░░░░░░░░░░░░░░░▒▒▒▒▒▓▓▓▓
+▒▒▒▒▒▒▒▒▒▒▒▒░░░░░▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▒▒▒▒░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+   ▒▒▒▓▓▓▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒░░░░▒▒▓▓▓▓▓▓▓▓▒▒▒░  
+    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒░░▒▒▓▓▓▓▓▓▓▒▒▒░   -->
+<!--I ask that you please do not snoop around my code, It is very unorganized.-->
+<!--I Don't want you to rob yourself of the experience of making your own website.-->
+<!--I strive for an open source web but use my code as reference not as law.-->
 <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>>Enter<</title>
+
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        background-size: cover;
-        background-position: center;
-        height: 100vh;
-    }
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
 
-    .icons {
-        position: absolute;
-        background-image: url("files/images/entry/icon.png");
-        width: 457px;
-        height: 67px;
-        bottom: 64px;
-        right: 14px;
-    }
+.show {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 3s;
+}
 
-    .vignette {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        box-shadow: 0 0 200px rgba(0, 0, 0, 0.9) inset;
-    }
+    .cursor-hidden {
+    cursor: none !important;
+}
+body {
+    margin: 0;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background: #000;
+    color: white;
+    font-family: sans-serif;
+    overflow: hidden;
+}
 
-    @keyframes ScanlineAnimationLeft {
-        0% {
-            transform: translateX(0px) translateY(0px);
-        }
-        100% {
-            transform: translateX(-32px) translateY(-32px);
-        }
-    }
+button {
+    font-size: 18px;
+    padding: 12px 28px;
+}
 
-    body::before {
-        content: "";
-        display: block;
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: calc(100% + 32px);
-        height: calc(100% + 32px);
-        background-image: url(files/images/entry/tv.png);
-        background-repeat: repeat;
-        z-index: 10000000;
-        animation: ScanlineAnimationLeft 2s linear infinite;
-        pointer-events: none;
+#enter:hover {
+    color: #f9fe0e;
+    text-decoration: underline;
+}
+
+#enter { 
+    font-family: determination2;
+    position: relative;
+     font-size: 42px; 
+     color: white; 
+     background: black; 
+     border: none; 
+     text-align: center; 
+     margin-top:20px; 
+     padding: none; }
+
+#enter::before {
+    color: #f9fe0e;
+    position: absolute;
+    content: "";
+    display: inline-block;
+    top: 25%;
+    width: 32px;
+    height: 32px;
+    right:-25px;
+    transform: translateY(-50%);
+    background-image: url("https://file.garden/aejaU8l_-hvXF5j_/SOUL.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: 0s;
+}
+
+#enter:hover::before {
+    color: #f9fe0e;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@font-face {
+    font-family: "determination";
+    src: url("https://file.garden/aejaU8l_-hvXF5j_/PixelOperator8-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "determination2";
+    src: url("https://file.garden/aejaU8l_-hvXF5j_/determination.ttf");
+}
+
+body {
+    background: black;
+    color: white;
+}
+
+#bg{
+    opacity:2%;
+    position:fixed;
+    inset:-50%;
+    display:grid;
+    grid-template:50% 50%/50% 50%;
+    transform:scale(2);
+    filter:brightness(10)
+}
+#bg div{
+    background:url("https://file.garden/aejaU8l_-hvXF5j_/IMAGE_DEPTH.png") repeat;
+    background-size:256px 256px;
+    background-position:var(--x) var(--y);
+    image-rendering:pixelated;
+    filter:brightness(.55) contrast(1.2) saturate(.75);
+    mask-image:radial-gradient(circle, #000 55%, transparent 100%);
+    mask-size:256px 256px;
+    mask-repeat:repeat;
+    mask-position:var(--x) var(--y);
+    -webkit-mask-image:radial-gradient(circle, #000 55%, transparent 100%);
+    -webkit-mask-size:256px 256px;
+    -webkit-mask-repeat:repeat;
+    -webkit-mask-position:var(--x) var(--y);
+}
+#bg div:nth-child(1){transform:scale(-1,-1)}
+#bg div:nth-child(2){transform:scaleY(-1)}
+#bg div:nth-child(3){transform:scaleX(-1)}
+
+#typebox {
+    position: fixed;
+    font-family: "determination", sans-serif;
+    font-size: 38px;
+    color: white;
+    white-space: pre-wrap;
+    pointer-events: none;
+
+filter:
+    drop-shadow(1px 0 0.8px #a8a8a8)
+    drop-shadow(-1px 0 0.8px #a8a8a8)
+    drop-shadow(0 1px 0.8px #a8a8a8)
+    drop-shadow(0 -1px 0.8px #a8a8a8);
+    
+    image-rendering: pixelated;
+    font-smooth: never;
+    -webkit-font-smoothing: none;
+}
+
+.fadeout {
+	animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+    from {
         opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.skip{
+    font-family: determination;
+    font-size: 8px;
+    opacity: 10%;
+    padding: 4px;
+    position: absolute;
+    left: 1px;
+    bottom: 1px;
+    background-color: #000;
+    border: none;
+    color: white;
+}
+.skip:hover {
+    text-decoration: underline;
+    transform: scale(1.05);
+}
+
+#info{
+    position: relative;
+    background-color: black;
+    border-style: solid;
+    border: 6px solid white;
+    color: white;
+    font-family: determination;
+    font-size: 13px;
+    text-wrap: balance;
+    width: min(30%, 600px);
+    box-sizing: border-box;
+    line-height: 1.8;
+    --text-v-pos: -7px;
+    letter-spacing: 0px;
+    user-select: none;
+    image-rendering: pixelated;
+    padding: 15px;
+    justify-content: space-between;
+    overflow-x:inherit;
+}
+
+#info p{
+    padding-left: 20px;
+    text-indent: -20px;
+}
+
+.buttons{
+    image-rendering: pixelated;
+    position:relative;
+    float: right;
+    right: -51px;
+    flex-direction: column;
+    width: 316px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.buttons img{
+    width: 88px;
+    height: 31px;
+}
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    #typebox {
+        font-size: 24px;
+        text-align: center;
+        width: 90%;
+    }
+
+    #info {
+        width: 95%;
+        max-width: none;
+        font-size: 12px;
+        padding: 10px;
+        border-width: 4px;
+    }
+
+    #info p {
+        padding-left: 10px;
+        text-indent: -10px;
+    }
+
+    .buttons {
+        float: none;
+        position: static;
+        width: 100%;
+        margin: 20px 0 0 0;
+        text-align: center;
+    }
+
+    .buttons img {
+        width: 88px;
+        height: 31px;
+        margin: 3px;
     }
 
     #enter {
-        position: absolute;
-        width: 600px;
-        height: 500px;
-        top: 0;
-        bottom: 25%;
-        left: 0;
-        right: 0;
-        margin: auto;
-        background-color: rgba(255, 255, 255, 0.60);
-        backdrop-filter: blur(12px);
-        border-radius: 3px;
-        box-shadow: 4px 4px 4px rgba(0, 65, 255, .4);
+        font-size: 24px;
+        width: 100%;
     }
 
-
-    #niko:active {
-        cursor: grabbing;
-    }
-
-    #niko img {
-        filter: drop-shadow(2px 2px 0.25rem rgba(75, 150, 255, 1)) saturate(1);
-        float: left;
-    }
-	
-	.tooltip {
-  background-color:rgba(255,255,255,0);
-  color: blue;
-  cursor: pointer;
-  padding: 2px 4px;
-  width: 140px;
-  border:none;
-  text-align: center;
-  font-size: 24px;
-  border-radius: 4px;
-  font-family:"MS PGothic";
-  position: relative;
-  display:block;
-filter:drop-shadow(2px 2px 0.25rem rgba(69, 230, 255,0.8));
-  box-shadow: 2px 2px 2px rgba(0, 100, 255, 0.25);
 }
-
-.topleft {
-  position: absolute;
-  background-size: 100% 100%;
-  width: 564px;
-  height: 84px;
-  top: 64px;
-  left: 14px;
-}
-
-
-
-
-  #bar{
-background-image:url("files/images/entry/bar.png");
-background-position: bottom center;
-background-repeat: repeat-x;
-width: calc(100% + 128px);
-overflow:hidden;
-height:64px;
-position:fixed;
-top:0px;
-left:0px;
-z-index:100;
-pointer-events:none;
-opacity:1;
-animation-name: scroll;
-animation-duration:1s;
-animation-iteration-count: infinite;
-animation-timing-function: linear;
-}
-
-#bar2{
-background-image:url("files/images/entry/bar2.png");
-background-position: bottom center;
-background-repeat: repeat-x;
-width: calc(100% + 128px);
-overflow:hidden;
-height:64px;
-position:fixed;
-bottom:0px;
-left:0px;
-z-index:100;
-pointer-events:none;
-opacity:1;
-animation-name: scroll;
-animation-duration:1s;
-animation-iteration-count: infinite;
-animation-timing-function: linear;
-}
-@keyframes scroll{
-0%   {transform: translate(0px, 0px);}
-100%  {transform: translate(-96px, 0px);}
-}
-
-
-
-.center {
-	display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 120px;
-  width: 100%;
-  height: 50%;
-  padding: 10px;
-  
-}
-
 </style>
-
+</head>
 <body>
-  <img class="center" src="files/images/entry/rainbow.png">
+    <div id="bg"><div></div><div></div><div></div><div></div></div>
+<script>
+let x=0,y=0;
+(function loop(){
+    x+=0.35; y+=0.18;
+    bg.style.setProperty('--x',x+'px');
+    bg.style.setProperty('--y',y+'px');
+    requestAnimationFrame(loop);
+})();
+</script>
+<div id="typebox"></div>
+<div id="info" class="hidden">
+    <h3>* A FEW REMINDERS.</h3>
+    <p>* This site was designed for a <u>1920x1080</u> screen. It may work on mobile devices but don't count on it looking nice.</p>
+    <br>
+    <p>* Keep in mind, that dispite this landing page, this site doesn't have a general theme. It's an amalgamate of a bunch of my personal interests.</p>
+    <br>
+    <p>* This website contains autoplaying elements, these are not able to be toggled. If this is an issue please mute the tab.</p>
+    <br>
+    <p>* Pages on this site are still being worked on, some things may be unexplainably broken.<br>On that note, this site is currently unrated, but it's safe to view by a general audience.</p>
+    <br>
+    <p>* The contents of this site may appear random. That is because they are.</p>
+    <br>
+    <p>* Press ENTER when you are ready to continue. <br> There is no guarantee anything here will make sense.</p>
+    <br>
+    <button style="user-select:text;cursor:pointer;" id="enter">ENTER</button>
+        <div class="buttons">
+            <img src="files/images/entry/NYRc.gif">
+            <img src="files/images/entry/dontfeedai.gif">
+            <img src="files/images/entry/19201080button.gif">
+            <img src="files/images/entry/npp.png">
+            <img src="files/images/entry/yall.gif">
+            <img src="files/images/entry/nop.gif">
+        </div>
+</div>
+<script>
+function hideCursor() {
+    document.body.classList.add("cursor-hidden");
+}
 
-<div id="bar"></div>
-<div id="bar2"></div>
-	<div class="topleft"><script type="text/javascript" src="https://counter.websiteout.com/js/5/6/0/0"></script></div>
-    <div class="vignette"></div>
-    <div class="icons"></div>
-    <script>
-        const images = [
-            "files/images/entry/tree.png",
-            "files/images/entry/machine.png",
-            "files/images/entry/deer.png",
-            "files/images/entry/controller.png"
-        ];
-        const randomImage = images[Math.floor(Math.random() * images.length)];
-        document.body.style.backgroundImage = `url('${randomImage}')`;
-	    
-        const niko = document.getElementById('niko');
-        let offsetX, offsetY, isDragging = false;
+function showCursor() {
+    document.body.classList.remove("cursor-hidden");
+}
 
-        niko.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            offsetX = e.clientX - niko.getBoundingClientRect().left;
-            offsetY = e.clientY - niko.getBoundingClientRect().top;
-            niko.style.cursor = 'grabbing';
-        });
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            const x = e.clientX - offsetX;
-            const y = e.clientY - offsetY;
-            niko.style.left = `${x}px`;
-            niko.style.top = `${y}px`;
-        });
+async function typeText(text, speed = 150, fade = true) {
+    typebox.textContent = "";
+    typebox.classList.remove("fadeout");
+    typebox.style.opacity = "1";
 
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-            niko.style.cursor = 'grab';
-        });
-		
-    </script>
+    hideCursor();
+
+    for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        typebox.textContent += char;
+
+        let delay = speed;
+
+        if (char === " ") delay += 170;
+        if (".!?".includes(char)) delay += 350;
+
+        await sleep(delay);
+    }
+    if (fade) {
+        await sleep(2000);
+        typebox.classList.add("fadeout");
+        await sleep(1000);
+    }
+}
+
+async function runIntro() {
+    hideCursor();
+    await typeText("ARE YOU THERE?");
+    await sleep(1000);    
+    await typeText("EXCELLENT.");
+    await sleep(1000);
+    await typeText("WELCOME TO MY PAGE.");
+    await sleep(1000);
+    await typeText("PLEASE ENJOY YOUR STAY.", 150, true);
+document.getElementById("info").classList.remove("hidden");
+document.getElementById("info").classList.add("show");
+    showCursor();
+}
+
+runIntro();
+</script>
+<button id="enter2" class="skip"><h1>skip...</h1></button>
+<script>
+const intro = new Audio("files/audio/music/ANOTHERHIM.mp3");
+intro.loop = true;
+intro.volume = 0.15;
+intro.play().catch(() => {});
+window.addEventListener("load", () => {
+    intro.play().catch(() => {});
+});
+document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+        intro.play().catch(() => {});
+    }
+});
+function unlockAudio() {
+    intro.play().catch(() => {});
+}
+["pointerdown", "click", "keydown", "touchstart"].forEach(event => {
+    document.addEventListener(event, unlockAudio, { once: true });
+});
+
+document.getElementById("enter").addEventListener("click", async () => {
+    try {
+        await intro.play();
+    } catch (e) {}
+    setTimeout(() => {
+        window.location.href = "beep.html";
+    }, 100);
+});
+
+document.getElementById("enter2").addEventListener("click", async () => {
+    try {
+        await intro.play();
+    } catch (e) {}
+    setTimeout(() => {
+        window.location.href = "beep.html";
+    }, 100);
+});
+</script>
 </body>
+</html>
