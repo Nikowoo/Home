@@ -1,6 +1,6 @@
 <body>
   <img src="https://file.garden/aejaU8l_-hvXF5j_/Robert%20F.%20Tricky%20Tony%20_Radiation_%20Fox.png" id="tony">
-  <audio id="music" loop autoplay src="https://file.garden/aejaU8l_-hvXF5j_/SUSIE.mp3"></audio>
+  <audio id="music" loop src="https://file.garden/aejaU8l_-hvXF5j_/SUSIE.mp3"></audio>
   <p id="i404">404</p>
 </body>
 
@@ -51,9 +51,15 @@ body {
 <script>
 window.addEventListener("load", () => {
     document.getElementById("tony").classList.add("animate");
-     document.getElementById("i404").classList.add("animate");
-});
+    document.getElementById("i404").classList.add("animate");
 
-const music = document.getElementById("music");
-music.volume = 0.2; 
+    const music = document.getElementById("music");
+    music.volume = 0.2;
+
+    music.play().catch(() => {
+        document.addEventListener("click", () => {
+            music.play();
+        }, { once: true });
+    });
+});
 </script>
