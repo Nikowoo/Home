@@ -1,0 +1,59 @@
+<body>
+  <img src="https://file.garden/aejaU8l_-hvXF5j_/Robert%20F.%20Tricky%20Tony%20_Radiation_%20Fox.png" id="tony">
+  <audio id="music" loop autoplay src="https://file.garden/aejaU8l_-hvXF5j_/SUSIE.mp3"></audio>
+  <p id="i404">404</p>
+</body>
+
+<style>
+body {
+	color: white;
+	font-family: determination;
+    margin: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+}
+
+@font-face {
+    font-family: "determination";
+    src: url("https://file.garden/aejaU8l_-hvXF5j_/PixelOperator8-Bold.ttf") format("truetype");
+}
+
+#i404.animate {
+    animation: slideUpFade 0.8s ease-out forwards;
+}
+
+#tony {
+    border: 6px solid white;
+    background: black;
+    opacity: 0;
+}
+
+#tony.animate {
+    animation: slideUpFade 0.8s ease-out forwards;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(90px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
+<script>
+window.addEventListener("load", () => {
+    document.getElementById("tony").classList.add("animate");
+     document.getElementById("i404").classList.add("animate");
+});
+
+const music = document.getElementById("music");
+music.volume = 0.2; 
+</script>
